@@ -1,0 +1,61 @@
+.back-top-alimentos{
+    -fx-background-color: linear-gradient(to bottom right, #be0202, #ee1414);
+    -fx-background-radius: 7px;
+
+}
+
+.tabela-back-alimentos{
+    -fx-background-color:transparent;
+    -fx-border-color: transparent;;
+    -fx-padding: 0px;
+    -fx-border-radius: 0px 0px 7px 7px;
+    -fx-background-radius: 0px 0px 7px 7px;
+    -fx-alignment: CENTER;
+}
+
+.tabela-back-alimentos .column-header{
+    -fx-background-color: #cbcbcb;
+    -fx-alignment: CENTER;
+    -fx-pref-height:40 ;
+    ;
+}
+
+.tabela-back-alimentos .column-header .label{
+    -fx-alignment: CENTER;
+    -fx-text-fill: #696969;
+}
+
+.back-top-alimentos .label{
+    -fx-text-fill: white;
+
+}
+
+.text-field-alimentosFilter{
+    -fx-background-color: #9a0202;
+    -fx-background-radius: 0px 5px 5px 0px;
+    -fx-text-fill: white;
+}
+
+.back-iconSearch{
+    -fx-background-radius: 5px 0px 0px 5px;
+    -fx-background-color: #810000;
+}
+
+.background-tableAlimentos{
+    -fx-background-color: white;
+    -fx-background-radius: 0px 0px 7px 7px;
+}
+
+.back-infoAlimentos{
+    -fx-background-color: white;
+    -fx-background-radius: 8px;
+}
+
+.back-infoAlimentos .label{
+    -fx-text-fill: black;
+}
+
+.textAlimentos{
+    -fx-background-color: #ffffff;
+    -fx-font-family: "Tahoma";
+}

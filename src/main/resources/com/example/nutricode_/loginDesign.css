@@ -1,0 +1,323 @@
+
+
+.close{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+
+.left-login{
+    -fx-background-color: linear-gradient(to bottom right,#461212,#ff0000);
+}
+
+.right-login{
+    -fx-background-color: white;
+}
+
+.login-button{
+    -fx-background-color: linear-gradient(to bottom right,#461212,#ff0000);
+    -fx-cursor: hand;
+    -fx-background-radius: 5px;
+}
+.login-button:hover{
+    -fx-background-color: linear-gradient(to bottom right, #ef0202, #591313);
+}
+
+.box-login{
+    -fx-background-radius: 4px;
+    -fx-background-color: linear-gradient(to bottom right,#efefef,#eee);
+    -fx-border-color: #000;
+    -fx-border-radius: 4px;
+    -fx-border-width: 4px;
+    -fx-font-family: Arial;
+    -fx-font-size: 13px;
+}
+.close{
+    -fx-cursor: hand;
+    -fx-background-color: transparent;
+}
+
+.minimized{
+    -fx-background-color: transparent;
+}
+
+.minimized:hover{
+    -fx-cursor: hand;
+    -fx-background-color: #efefef;
+}
+
+.close:hover{
+    -fx-background-color: #e71919;
+}
+.box-login:focused{
+    -fx-background-color: #fff;
+}
+.left-home{
+    -fx-background-color: linear-gradient(to bottom right, #6b0404, #ff0000);
+}
+
+.button-home-left{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-size: 15px;
+    -fx-text-fill: #fff;
+
+    -fx-alignment: CENTER-LEFT;
+}
+
+.button-logout{
+    -fx-background-color: #d20505;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+}
+
+.button-logout:hover{
+    -fx-background-color: #ff0000 ;
+}
+
+.shadow{
+    -fx-effect: dropshadow(three-pass-box,rgba(0,0,0,0.5),6,0,0,0);
+}
+
+.white-bg{
+    -fx-background-color: #fff;
+    -fx-background-radius: 8px;
+}
+
+.back-top{
+    -fx-background-color: #fff;
+    -fx-background-radius: 0px;
+}
+
+.white-bg-table{
+    -fx-background-color: #fff;
+    -fx-background-radius: 0px 0px 8px 8px;
+}
+
+.buttons-top{
+    -fx-background-color: transparent;
+}
+
+.buttons-top:hover{
+    -fx-background-color: #d30000;
+    -fx-cursor: hand;
+}
+
+.card{
+    -fx-background-color: linear-gradient(to bottom right, #d52e00, #f34501) ;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+
+}
+
+.card :hover{
+    -fx-effect: dropshadow(three-pass-box,rgba(2,6,3,0.2),6,0,6,0);
+}
+
+.back-dashboard{
+    -fx-background-color: #e5e5e5;
+
+}
+
+.back-buttonsday{
+    -fx-background-color: linear-gradient(to bottom right, #8f0808, #ea0b0b);
+    -fx-background-radius: 7px 7px 0px 0px;
+}
+
+.buttonDay{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent; /* Cor de fundo */
+    -fx-background-insets: 0,0,0,0;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+    -fx-background-radius: 0px;
+    -fx-border-radius: 0px;
+}
+.buttonDayleft{
+    -fx-border-color: transparent;
+    -fx-font-size: 12px;
+    -fx-background-color: transparent; /* Cor de fundo */
+    -fx-background-insets: 0,0,0,0;
+
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+}
+
+.buttonDay:hover{
+    -fx-border-color: transparent;
+    -fx-font-size: 13px;
+    -fx-background-color: #c00000; /* Cor de fundo */
+    -fx-background-insets: 0,0,0,0;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+}
+
+.buttonDay:focused{
+    -fx-border-color: transparent;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #500505; /* Cor de fundo */
+    -fx-background-insets: 0,0,0,0;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+}
+
+.buttonDayRight:hover{
+    -fx-border-color: transparent;
+    -fx-font-size: 13px;
+    -fx-background-color: #c90000; /* Cor de fundo */
+    -fx-background-insets: 0,0,0,0;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+}
+
+.buttonDayRight:focused{
+    -fx-border-color: transparent;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #500505; /* Cor de fundo */
+    -fx-background-insets: 0,0,0,0;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+    -fx-background-radius: 0px 6px 0px 0px;
+}
+
+.buttonDayleft:hover{
+    -fx-border-color: transparent;
+    -fx-font-size: 13px;
+    -fx-background-color: #c90000; /* Cor de fundo */
+    -fx-background-insets: 0,0,0,0;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+}
+
+.buttonDayleft:focused{
+    -fx-border-color: transparent;
+    -fx-font-size: 13px;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #500505; /* Cor de fundo */
+    -fx-background-insets: 0,0,0,0;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 6px 0px 0px 0px;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+}
+
+.buttonDayRight{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0,0,0,0;
+
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+    -fx-font-family: "Arial";
+    -fx-font-size: 12px;
+}
+
+.buttonDay .label{
+    -fx-text-fill: white;
+    -fx-font-family: Arial;
+}
+
+.tabela-back{
+    -fx-background-color: #fdfdfd;
+    -fx-border-color: #e3e3e3;
+    -fx-padding: 0px;
+    -fx-border-radius: 6px 6px 0px 0px;
+    -fx-alignment: CENTER;
+}
+
+.tabela-back .column-header{
+    -fx-background-color: #dedcdc;
+    -fx-alignment: CENTER;
+}
+
+.tabelaLista-back{
+    -fx-background-color: #fdfdfd;
+    -fx-border-color: #e3e3e3;
+    -fx-padding: 0px;
+    -fx-border-radius: 6px 6px 0px 0px;
+
+}
+
+.tabelaLista-back .column-header{
+    -fx-background-color: linear-gradient(to bottom right, #690e0e, #d51414);
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+    -fx-background-radius: 6px 6px 0px 0px;
+}
+
+
+.table-row-cell{
+    -fx-background-color: white;
+    -fx-alignment: CENTER;
+}
+.table-cell {
+    -fx-alignment: center;
+    -fx-border-color: #fcfcfc;
+
+}
+
+
+
+.table-view:focused{
+    -fx-background-color: white ;
+    -fx-padding: 0px;
+    -fx-border-radius: 6px 6px 0px 0px;
+
+}
+
+.table-viewRefeiçoes .column-header {
+    -fx-background-color: linear-gradient(to bottom right, #620a0a, #e31414);
+    -fx-text-fill: #efefef;
+    -fx-alignment: CENTER;
+
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #ececec;
+    -fx-text-background-color: #000000;
+    -fx-alignment: CENTER;
+    -fx-cursor: hand;
+
+}
+
+.table-row-cell:focused {
+    -fx-background-color: #e5e5e5;
+    -fx-text-background-color: #000000;
+    -fx-alignment: CENTER;
+
+}
+
+.tabelaLista-back .header-cell .label{
+    -fx-text-fill: #ffffff;
+    -fx-font-family: Tahoma;
+    -fx-alignment: CENTER;
+}
+
+.info-dashboard-back{
+    -fx-background-radius: 0px 0px 6px 6px;
+    -fx-background-color: #ffffff;
+
+}
+
+.background-info-day{
+
+    -fx-background-color: linear-gradient(to bottom right, #00022a, #081660);
+
+}
+
+.background-info-day .label{
+    -fx-text-fill: white;
+    -fx-font-family: Arial;
+}
+

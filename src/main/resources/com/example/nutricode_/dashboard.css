@@ -1,0 +1,93 @@
+.button-add{
+    -fx-background-color: linear-gradient(to bottom right, #054905, #136513);
+    -fx-font-family: "Arial Black";
+    -fx-text-fill: white;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+.button-add:hover{
+    -fx-background-color: linear-gradient(to bottom right, #063f06, #108510);
+}
+
+.button-add:pressed{
+    -fx-background-color: #062301;
+}
+
+.button-exclui{
+    -fx-background-color: linear-gradient(to bottom right, #1c032d, #3c0070);
+    -fx-font-family: "Arial Black";
+    -fx-text-fill: white;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.button-up{
+    -fx-background-color: linear-gradient(to bottom right, #d52e00, #f34501);
+    -fx-font-family: "Arial Black";
+    -fx-text-fill: white;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+.button-up:hover{
+    -fx-background-color: linear-gradient(to bottom right, #563105, #b95200);
+}
+
+
+
+.backTextField{
+    -fx-background-color: #f3f3f3;
+}
+
+
+
+.button-exclui:hover{
+
+    -fx-background-color: linear-gradient(to bottom right, #200533, #571593);
+}
+
+.button-exclui:pressed{
+    -fx-background-color: #13022c;
+}
+
+.buttom-printer{
+    -fx-background-color: #e3e3e3;
+
+    -fx-cursor: hand;
+    -fx-background-radius: 5px;
+
+}
+.buttom-printer:hover{
+    -fx-background-color: #d0d0d0;
+
+}
+
+.buttom-printer:pressed{
+    -fx-background-color: #b0adad;
+}
+
+
+
+.check-box:selected .box > .mark{
+    -fx-background-color: #018801;
+    -fx-opacity: 100%;
+
+}
+.check-box .box > .mark{
+    -fx-background-color: transparent;
+    -fx-opacity: 100%;
+
+
+}
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-radius: 4px;
+    -fx-content-display: bottom;
+    -fx-border-color: gray;
+    -fx-scale-x: 0.8;
+    -fx-scale-y: 0.8;
+}
+
+
+
+
+

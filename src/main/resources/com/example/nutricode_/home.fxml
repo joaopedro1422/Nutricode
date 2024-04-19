@@ -1,0 +1,867 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="1150.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.nutricode_.DashboardController">
+   <children>
+      <AnchorPane fx:id="cenaPrincipal" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <BorderPane layoutX="57.0" layoutY="-2.0" prefHeight="604.0" prefWidth="1047.0" AnchorPane.bottomAnchor="-2.0" AnchorPane.leftAnchor="-13.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-2.0">
+               <top>
+                  <AnchorPane prefHeight="35.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="7.0" layoutY="4.0" prefHeight="34.0" prefWidth="1109.0" stylesheets="@loginDesign.css" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="4.0">
+                           <children>
+                              <FontAwesomeIconView glyphName="CUTLERY" layoutX="26.0" layoutY="26.0" size="22" text="" AnchorPane.bottomAnchor="5.857143402099609" AnchorPane.leftAnchor="26.0" />
+                              <Label layoutX="50.0" layoutY="9.0" text="Nutricode - Gerenciador de dietas" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="50.0">
+                                 <font>
+                                    <Font name="Tahoma" size="14.0" />
+                                 </font>
+                              </Label>
+                              <Button layoutX="1038.0" layoutY="9.0" mnemonicParsing="false" onAction="#close" prefHeight="31.0" prefWidth="64.0" styleClass="close" stylesheets="@loginDesign.css" AnchorPane.rightAnchor="2.0" AnchorPane.topAnchor="2.0">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#3c3c3c" glyphName="CLOSE" size="14" />
+                                 </graphic>
+                              </Button>
+                              <Button layoutX="1037.0" layoutY="3.0" mnemonicParsing="false" onAction="#minimize" prefHeight="32.0" prefWidth="54.0" styleClass="minimized" stylesheets="@loginDesign.css">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#222222" glyphName="MINUS" />
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <styleClass>
+                              <String fx:value="shadow" />
+                              <String fx:value="back-top" />
+                           </styleClass></AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <left>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutY="14.0" prefHeight="576.0" prefWidth="245.0" stylesheets="@loginDesign.css" AnchorPane.bottomAnchor="0.0">
+                           <children>
+                              <FontAwesomeIconView fill="#fafafa" glyphName="USER" layoutX="96.0" layoutY="111.0" size="80" text="" wrappingWidth="57.14285659790039" />
+                              <Label layoutX="108.0" layoutY="123.0" text="Olá," textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nomeUsuario" alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="144.0" prefHeight="23.0" prefWidth="224.0" textFill="#cd2525">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="112.0" layoutX="109.0" layoutY="185.0" startX="-81.0" stroke="WHITE" />
+                              <Button fx:id="homeButton" layoutX="25.0" layoutY="211.0" mnemonicParsing="false" onAction="#opçaoMenu" prefHeight="39.0" prefWidth="197.0" styleClass="button-home-left" stylesheets="@loginDesign.css" text="         Home">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="catalogoAlimentosButton" layoutX="27.0" layoutY="281.0" mnemonicParsing="false" onAction="#opçaoMenu" prefHeight="39.0" prefWidth="197.0" styleClass="button-home-left" stylesheets="@loginDesign.css" text="Catálogo de Alimentos">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#ffffff00" glyphName="SPOON" size="17" />
+                                 </graphic>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="paginaRefeiçoesButton" layoutX="24.0" layoutY="246.0" mnemonicParsing="false" onAction="#opçaoMenu" prefHeight="39.0" prefWidth="197.0" styleClass="button-home-left" stylesheets="@loginDesign.css" text="Refeições">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="#ffffff00" glyphName="CUTLERY" selectionFill="#ffffff00" size="15" />
+                                 </graphic>
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="logoutButton" layoutX="23.0" layoutY="515.0" mnemonicParsing="false" onAction="#logout" prefHeight="31.0" prefWidth="23.0" stylesheets="@loginDesign.css" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="23.0">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="WHITE" fontSmoothingType="LCD" glyphName="SIGN_OUT" size="21">
+                                       <styleClass>
+                                          <String fx:value="shadow" />
+                                          <String fx:value="button-logout" />
+                                       </styleClass>
+                                    </FontAwesomeIconView>
+                                 </graphic>
+                                 <styleClass>
+                                    <String fx:value="shadow" />
+                                    <String fx:value="button-logout" />
+                                 </styleClass>
+                              </Button>
+                              <Label layoutX="71.0" layoutY="541.0" text="Sair" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                              </Label>
+                              <FontAwesomeIconView fill="WHITE" glyphName="HOME" layoutX="42.0" layoutY="236.0" size="17" AnchorPane.leftAnchor="47.0" />
+                           </children>
+                           <styleClass>
+                              <String fx:value="left-home" />
+                              <String fx:value="shadow" />
+                           </styleClass>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </left>
+               <center>
+                  <AnchorPane fx:id="dashboardPane" maxHeight="574.0" prefHeight="574.0" prefWidth="918.0" styleClass="back-dashboard" stylesheets="@loginDesign.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane fx:id="homePage" layoutX="12.0" layoutY="22.0" prefHeight="532.0" prefWidth="795.0" styleClass="back-cards" stylesheets="@loginDesign.css" AnchorPane.bottomAnchor="15.0">
+                           <children>
+                              <AnchorPane layoutY="-6.0" prefHeight="165.0" prefWidth="895.0" stylesheets="@loginDesign.css">
+                                 <children>
+                                    <AnchorPane layoutX="9.0" layoutY="10.0" prefHeight="147.0" prefWidth="266.0" stylesheets="@loginDesign.css">
+                                       <children>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="BAR_CHART_ALT" layoutX="14.0" layoutY="99.0" size="51" wrappingWidth="66.7142858505249" />
+                                          <Label layoutX="88.0" layoutY="106.0" prefHeight="17.0" prefWidth="119.0" text="Proteínas" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="14.0" layoutY="14.0" text="Média/Dia" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="mediaProt" alignment="CENTER_RIGHT" layoutX="120.0" layoutY="13.0" prefHeight="17.0" prefWidth="119.0" text="110" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial Bold" size="29.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="239.0" layoutY="30.0" text="g" textFill="WHITE" AnchorPane.bottomAnchor="108.0" AnchorPane.rightAnchor="17.0">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="card" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="307.0" layoutY="10.0" prefHeight="146.0" prefWidth="276.0" stylesheets="@loginDesign.css">
+                                       <children>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="PIE_CHART" layoutX="23.0" layoutY="99.0" size="51" wrappingWidth="66.7142858505249" />
+                                          <Label layoutX="79.0" layoutY="106.0" prefHeight="21.0" prefWidth="148.0" text="Carboidratos" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial Bold" size="23.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="23.0" layoutY="14.0" text="Média/Dia" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="mediaCarbo" alignment="CENTER_RIGHT" layoutX="125.0" layoutY="13.0" prefHeight="17.0" prefWidth="119.0" text="215" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial Bold" size="28.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="246.0" layoutY="25.0" text="g" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="card" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                    <AnchorPane layoutX="613.0" layoutY="10.0" prefHeight="147.0" prefWidth="273.0" stylesheets="@loginDesign.css" AnchorPane.rightAnchor="9.0">
+                                       <children>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="LINE_CHART" layoutX="25.0" layoutY="99.0" size="51" wrappingWidth="66.7142858505249" />
+                                          <Label layoutX="101.0" layoutY="106.0" prefHeight="17.0" prefWidth="119.0" text="Calorias" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial Bold" size="25.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="25.0" layoutY="14.0" text="Média/Dia" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial" size="11.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="mediaCal" alignment="CENTER_RIGHT" layoutX="110.0" layoutY="12.0" prefHeight="17.0" prefWidth="119.0" text="2150" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial Bold" size="28.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="229.0" layoutY="28.0" text="Kcal" textFill="WHITE">
+                                             <font>
+                                                <Font name="Arial Bold" size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="card" />
+                                          <String fx:value="shadow" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                    <Line endX="68.0" layoutX="288.0" layoutY="83.0" rotate="90.0" startX="-59.0" stroke="#eeeeee" />
+                                    <Line endX="68.0" layoutX="593.0" layoutY="83.0" rotate="90.0" startX="-59.0" stroke="#eeeeee" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </AnchorPane>
+                              <AnchorPane layoutY="168.0" prefHeight="38.0" prefWidth="897.0" stylesheets="@loginDesign.css">
+                                 <children>
+                                    <Button fx:id="segundaButton" layoutX="2.0" layoutY="1.0" mnemonicParsing="false" onAction="#setTableDiaSemana" prefHeight="36.0" prefWidth="139.0" styleClass="buttonDayleft" stylesheets="@loginDesign.css" text="Segunda-Feira" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="terçaButton" layoutX="139.0" layoutY="1.0" mnemonicParsing="false" onAction="#setTableDiaSemana" prefHeight="36.0" prefWidth="125.0" styleClass="buttonDay" stylesheets="@loginDesign.css" text="Terça-Feira" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="quartaButton" layoutX="263.0" layoutY="1.0" mnemonicParsing="false" onAction="#setTableDiaSemana" prefHeight="36.0" prefWidth="126.0" styleClass="buttonDay" stylesheets="@loginDesign.css" text="Quarta-Feira" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="quintaButton" layoutX="389.0" layoutY="1.0" mnemonicParsing="false" onAction="#setTableDiaSemana" prefHeight="36.0" prefWidth="139.0" styleClass="buttonDay" stylesheets="@loginDesign.css" text="Quinta-Feira" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="sextaButton" layoutX="528.0" layoutY="1.0" mnemonicParsing="false" onAction="#setTableDiaSemana" prefHeight="36.0" prefWidth="125.0" styleClass="buttonDay" stylesheets="@loginDesign.css" text="Sexta-Feira" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="sabadoButton" layoutX="653.0" layoutY="1.0" mnemonicParsing="false" onAction="#setTableDiaSemana" prefHeight="36.0" prefWidth="125.0" styleClass="buttonDay" stylesheets="@loginDesign.css" text="Sábado" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="12.0" />
+                                       </font>
+                                    </Button>
+                                    <Button fx:id="domingoButton" layoutX="778.0" layoutY="1.0" mnemonicParsing="false" onAction="#setTableDiaSemana" prefHeight="36.0" prefWidth="115.0" styleClass="buttonDayRight" stylesheets="@loginDesign.css" text="Domingo" textFill="WHITE">
+                                       <font>
+                                          <Font name="Arial Black" size="12.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="back-buttonsday" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </AnchorPane>
+                              <AnchorPane fx:id="domingo_dash" layoutY="206.0" maxHeight="349.0" prefHeight="335.0" prefWidth="896.0">
+                                 <children>
+                                    <AnchorPane layoutX="50.0" layoutY="168.0" prefHeight="167.0" prefWidth="293.0" stylesheets="@loginDesign.css">
+                                       <children>
+                                          <FontAwesomeIconView glyphName="CALENDAR" layoutX="18.0" layoutY="75.0" selectionFill="BLACK" size="40" text="" wrappingWidth="42.35000038146973" />
+                                          <Label layoutX="102.0" layoutY="9.0" prefHeight="32.0" prefWidth="148.0" text="Carboidratos " AnchorPane.bottomAnchor="126.0">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="103.0" layoutY="42.0" text="Proteínas " AnchorPane.rightAnchor="117.0" AnchorPane.topAnchor="42.0">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="103.0" layoutY="67.0" prefHeight="17.0" prefWidth="71.0" text="Gorduras">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="105.0" layoutY="118.0" prefHeight="17.0" prefWidth="67.0" text="Calorias" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="102.0">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="103.0" layoutY="94.0" prefHeight="17.0" prefWidth="49.0" text="Fibras" AnchorPane.leftAnchor="103.0" AnchorPane.topAnchor="92.0">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="carboidratosDia" alignment="CENTER_RIGHT" layoutX="218.0" layoutY="15.0" prefHeight="20.0" prefWidth="47.0" text="400">
+                                             <font>
+                                                <Font name="Arial Bold" size="16.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="proteinasDia" alignment="CENTER_RIGHT" layoutX="223.0" layoutY="39.0" prefHeight="18.0" prefWidth="42.0" text="95" AnchorPane.topAnchor="39.0">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="gordurasDia" alignment="CENTER_RIGHT" layoutX="217.0" layoutY="64.0" prefHeight="18.0" prefWidth="48.0" text="130" AnchorPane.topAnchor="64.0">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="fibrasDia" alignment="CENTER_RIGHT" layoutX="218.0" layoutY="91.0" prefHeight="18.0" prefWidth="47.0" text="70" AnchorPane.topAnchor="91.0">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="caloriasDia" alignment="CENTER_RIGHT" layoutX="199.0" layoutY="117.0" prefHeight="18.0" prefWidth="47.0" text="2300" AnchorPane.leftAnchor="199.0">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="267.0" layoutY="16.0" text="g" AnchorPane.rightAnchor="18.0" />
+                                          <Label layoutX="267.0" layoutY="42.0" text="g" AnchorPane.rightAnchor="18.0" />
+                                          <Label layoutX="267.0" layoutY="68.0" text="g" AnchorPane.rightAnchor="18.0" />
+                                          <Label layoutX="267.0" layoutY="93.0" text="g" AnchorPane.rightAnchor="18.0" />
+                                          <Label layoutX="249.0" layoutY="118.0" text="Kcal" AnchorPane.leftAnchor="249.0" AnchorPane.topAnchor="118.0" />
+                                          <Label layoutX="11.0" layoutY="85.0" text="Total/Dia" AnchorPane.leftAnchor="11.0" />
+                                          <Line endX="34.604129791259766" endY="-28.966659545898438" fill="WHITE" layoutX="121.0" layoutY="104.0" opacity="0.81" rotate="98.1" startX="-100.43807220458984" startY="-9.264642715454102" strokeDashOffset="20.0" strokeMiterLimit="20.0" />
+                                          <Label layoutX="176.0" layoutY="40.0" opacity="0.2" text="---------" />
+                                          <Label layoutX="176.0" layoutY="67.0" opacity="0.2" text="---------" />
+                                          <Label layoutX="155.0" layoutY="92.0" opacity="0.2" text="---------------" />
+                                          <Label layoutX="200.0" layoutY="16.0" opacity="0.2" text="----" />
+                                          <Label layoutX="166.0" layoutY="119.0" opacity="0.2" text="-------" />
+                                          <Label layoutX="105.0" layoutY="137.0" text="Refeições" AnchorPane.leftAnchor="102.0" AnchorPane.topAnchor="142.0">
+                                             <font>
+                                                <Font name="Arial Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label layoutX="176.0" layoutY="141.0" opacity="0.2" text="--------------" />
+                                          <Label fx:id="qntRefeiçoesDia" layoutX="258.0" layoutY="141.0" text="6">
+                                             <font>
+                                                <Font name="Arial Bold" size="17.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                    <TableView fx:id="tabelaRefeiçoesDia" layoutX="12.0" layoutY="4.0" prefHeight="165.0" prefWidth="875.0" styleClass="tabela-back" stylesheets="@loginDesign.css">
+                                       <columns>
+                                          <TableColumn fx:id="nomeRefeiçaoDia" prefWidth="116.0" />
+                                          <TableColumn fx:id="a1Dia" prefWidth="98.0" />
+                                          <TableColumn fx:id="a2Dia" prefWidth="98.0" />
+                                          <TableColumn fx:id="a3Dia" prefWidth="98.0" />
+                                          <TableColumn fx:id="a4Dia" prefWidth="86.0" text="REFEIÇÕES" />
+                                          <TableColumn fx:id="a5Dia" prefWidth="102.0" />
+                                          <TableColumn fx:id="a6Dia" prefWidth="101.0" />
+                                          <TableColumn fx:id="a7Dia" prefWidth="83.0" />
+                                          <TableColumn fx:id="a8Dia" prefWidth="92.0" />
+                                       </columns>
+                                    </TableView>
+                                    <TextField fx:id="nomeRefeiçaoAdc" layoutX="579.0" layoutY="177.0" prefHeight="32.0" prefWidth="157.0" promptText="Refeição" styleClass="textfieldAdd" stylesheets="@abaRefeicoes.css">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </TextField>
+                                    <FontAwesomeIconView glyphName="SEARCH" layoutX="716.0" layoutY="197.0" size="13" text="" wrappingWidth="12.350000381469727" AnchorPane.leftAnchor="716.0" AnchorPane.topAnchor="185.8571424484253" />
+                                    <Button layoutX="520.0" layoutY="296.0" mnemonicParsing="false" onAction="#deleteRefeiçãoDoDia" prefHeight="31.0" prefWidth="70.0" styleClass="button-exclui" stylesheets="@dashboard.css" text="Excluir" />
+                                    <Label layoutX="467.0" layoutY="183.0" text="Add refeição: ">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Button layoutX="598.0" layoutY="296.0" mnemonicParsing="false" onAction="#addNovaRefeiçaoAoDia" prefHeight="30.0" prefWidth="94.0" styleClass="button-add" stylesheets="@dashboard.css" text="Add" />
+                                    <Button layoutX="808.0" layoutY="215.0" minWidth="50.0" mnemonicParsing="false" onAction="#geraRelatorio" prefHeight="40.0" prefWidth="50.0" styleClass="buttom-printer" stylesheets="@dashboard.css">
+                                       <graphic>
+                                          <FontAwesomeIconView boundsType="VISUAL" glyphName="ADD" size="25" text="" wrappingWidth="16.350000381469727" />
+                                       </graphic>
+                                    </Button>
+                                    <Line endX="69.125" endY="4.625" layoutX="446.0" layoutY="252.0" rotate="88.0" startX="-100.0" stroke="#d3d3d3" />
+                                    <Line endX="69.125" endY="4.625" layoutX="797.0" layoutY="252.0" rotate="88.2" startX="-100.0" stroke="#d3d3d3" />
+                                    <CheckBox fx:id="checkSegunda" layoutX="437.0" layoutY="224.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0" stylesheets="@dashboard.css">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkTerça" layoutX="536.0" layoutY="226.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="25.0" stylesheets="@dashboard.css">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkQuarta" layoutX="621.0" layoutY="226.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="25.0" stylesheets="@dashboard.css">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <CheckBox fx:id="checkQuinta" layoutX="712.0" layoutY="226.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="25.0" stylesheets="@dashboard.css">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <Label layoutX="463.0" layoutY="228.0" text="Segunda" />
+                                    <Label layoutX="561.0" layoutY="230.0" text="Terça" />
+                                    <Label layoutX="646.0" layoutY="230.0" text="Quarta" />
+                                    <Label layoutX="737.0" layoutY="230.0" text="Quinta" />
+                                    <CheckBox fx:id="checkSexta" layoutX="437.0" layoutY="258.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0" stylesheets="@dashboard.css">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <Label layoutX="463.0" layoutY="262.0" text="Sexta" />
+                                    <CheckBox fx:id="checkSabado" layoutX="535.0" layoutY="258.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0" stylesheets="@dashboard.css">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <Label layoutX="561.0" layoutY="262.0" text="Sábado" />
+                                    <CheckBox fx:id="checkDomingo" layoutX="620.0" layoutY="258.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="27.0" stylesheets="@dashboard.css">
+                                       <font>
+                                          <Font size="13.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <Label layoutX="646.0" layoutY="262.0" text="Domingo" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="white-bg-table" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <Line endX="815.0" layoutX="101.0" startX="-100.0" strokeWidth="3.0" AnchorPane.topAnchor="0.0">
+                           <stroke>
+                              <LinearGradient endX="1.0" endY="1.0" startY="0.6066350710900474">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color red="0.5921052694320679" green="0.021929824724793434" blue="0.021929824724793434" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </stroke>
+                        </Line>
+                        <AnchorPane fx:id="refeiçoesPage" layoutX="11.0" layoutY="16.0" prefHeight="542.0" prefWidth="894.0" styleClass="back-dashboard" stylesheets="@loginDesign.css" visible="false">
+                           <children>
+                              <AnchorPane layoutX="-1.0" layoutY="-7.0" prefHeight="554.0" prefWidth="270.0" stylesheets="@loginDesign.css">
+                                 <children>
+                                    <TableView fx:id="tableRefeiçoes" layoutX="10.0" layoutY="46.0" prefHeight="493.0" prefWidth="250.0" styleClass="tabelaLista-back" stylesheets="@loginDesign.css">
+                                      <columns>
+                                        <TableColumn fx:id="nomeRefeiçao" prefWidth="249.0" styleClass="header-cell" text="REFEIÇÃO" />
+                                      </columns>
+                                    </TableView>
+                                    <TextField fx:id="filtraRefeiçoes" layoutX="34.0" layoutY="14.0" prefHeight="26.0" prefWidth="224.0" promptText="Filtrar">
+                                       <font>
+                                          <Font name="Arial Narrow" size="12.0" />
+                                       </font>
+                                    </TextField>
+                                    <FontAwesomeIconView glyphName="SEARCH" layoutX="14.0" layoutY="33.0" size="15" text="" AnchorPane.topAnchor="19.0" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </AnchorPane>
+                              <AnchorPane layoutX="276.0" layoutY="-6.0" prefHeight="277.0" prefWidth="624.0" stylesheets="@abaRefeicoes.css">
+                                 <children>
+                                    <Label fx:id="tituloPane" alignment="CENTER" layoutX="208.0" layoutY="7.0" prefHeight="15.0" prefWidth="176.0" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tahoma" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="a1Pane" layoutX="42.0" layoutY="30.0" styleClass="labelAlimentos" stylesheets="@abaRefeicoes.css" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tahoma" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="a2Pane" layoutX="42.0" layoutY="57.0" styleClass="labelAlimentos" stylesheets="@abaRefeicoes.css" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tahoma" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="a3Pane" layoutX="42.0" layoutY="86.0" styleClass="labelAlimentos" stylesheets="@abaRefeicoes.css" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tahoma" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="a4Pane" layoutX="42.0" layoutY="117.0" styleClass="labelAlimentos" stylesheets="@abaRefeicoes.css" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tahoma" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="a5Pane" layoutX="42.0" layoutY="144.0" styleClass="labelAlimentos" stylesheets="@abaRefeicoes.css" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tahoma" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="a6Pane" layoutX="42.0" layoutY="171.0" styleClass="labelAlimentos" stylesheets="@abaRefeicoes.css" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tahoma" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="a7Pane" layoutX="42.0" layoutY="200.0" styleClass="labelAlimentos" stylesheets="@abaRefeicoes.css" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tahoma" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="a8Pane" layoutX="42.0" layoutY="231.0" styleClass="labelAlimentos" stylesheets="@abaRefeicoes.css" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tahoma" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <PieChart fx:id="graficoNutrientes" labelsVisible="false" layoutX="174.0" layoutY="38.0" legendVisible="false" prefHeight="208.0" prefWidth="262.0" styleClass="shadow" stylesheets="@abaRefeicoes.css" titleSide="BOTTOM" />
+                                    <FontAwesomeIconView fx:id="a1icon" fill="WHITE" glyphName="CIRCLE" layoutX="28.0" layoutY="41.0" size="5" visible="false">
+                                       <selectionFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </selectionFill>
+                                    </FontAwesomeIconView>
+                                    <FontAwesomeIconView fx:id="a2icon" fill="WHITE" glyphName="CIRCLE" layoutX="28.0" layoutY="68.0" size="5" visible="false">
+                                       <selectionFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </selectionFill>
+                                    </FontAwesomeIconView>
+                                    <FontAwesomeIconView fx:id="a3icon" fill="WHITE" glyphName="CIRCLE" layoutX="28.0" layoutY="97.0" size="5" visible="false">
+                                       <selectionFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </selectionFill>
+                                    </FontAwesomeIconView>
+                                    <FontAwesomeIconView fx:id="a4icon" fill="WHITE" glyphName="CIRCLE" layoutX="28.0" layoutY="128.0" size="5" visible="false">
+                                       <selectionFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </selectionFill>
+                                    </FontAwesomeIconView>
+                                    <FontAwesomeIconView fx:id="a5icon" fill="WHITE" glyphName="CIRCLE" layoutX="28.0" layoutY="155.0" size="5" visible="false">
+                                       <selectionFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </selectionFill>
+                                    </FontAwesomeIconView>
+                                    <FontAwesomeIconView fx:id="a6icon" fill="WHITE" glyphName="CIRCLE" layoutX="28.0" layoutY="182.0" size="5" visible="false">
+                                       <selectionFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </selectionFill>
+                                    </FontAwesomeIconView>
+                                    <FontAwesomeIconView fx:id="a7icon" fill="WHITE" glyphName="CIRCLE" layoutX="28.0" layoutY="211.0" size="5" visible="false">
+                                       <selectionFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </selectionFill>
+                                    </FontAwesomeIconView>
+                                    <FontAwesomeIconView fx:id="a8icon" fill="WHITE" glyphName="CIRCLE" layoutX="28.0" layoutY="242.0" size="5" visible="false">
+                                       <selectionFill>
+                                          <LinearGradient endX="1.0" endY="1.0">
+                                             <stops>
+                                                <Stop>
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                                <Stop offset="1.0">
+                                                   <color>
+                                                      <Color red="1.0" green="1.0" blue="1.0" />
+                                                   </color>
+                                                </Stop>
+                                             </stops>
+                                          </LinearGradient>
+                                       </selectionFill>
+                                    </FontAwesomeIconView>
+                                    <Label layoutX="437.0" layoutY="71.0" text="CARBOIDRATOS: " textFill="#2bc96d">
+                                       <font>
+                                          <Font name="Arial Black" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="436.0" layoutY="104.0" text="PROTEÍNAS: " textFill="#0000e8">
+                                       <font>
+                                          <Font name="Arial Black" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="437.0" layoutY="142.0" text="GORDURAS: " textFill="#b90808">
+                                       <font>
+                                          <Font name="Arial Black" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="437.0" layoutY="179.0" text="FIBRAS: " textFill="#730e9e">
+                                       <font>
+                                          <Font name="Arial Black" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="437.0" layoutY="217.0" text="CALORIAS: " textFill="#c6c6c6">
+                                       <font>
+                                          <Font name="Arial Black" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="carboPane" alignment="CENTER_RIGHT" layoutX="558.0" layoutY="70.0" prefHeight="20.0" prefWidth="48.0" styleClass="labelInfoChart" stylesheets="@abaRefeicoes.css" textFill="#2bc96d" AnchorPane.topAnchor="69.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="606.0" layoutY="75.0" text="g" textFill="#2bc96d">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="proteinasPane" alignment="CENTER_RIGHT" layoutX="545.0" layoutY="102.0" prefHeight="21.0" prefWidth="57.0" styleClass="labelInfoChart" stylesheets="@abaRefeicoes.css" textFill="#0000e8" AnchorPane.topAnchor="102.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="602.0" layoutY="108.0" text="g" textFill="#0000e8">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="GordurasPane" alignment="CENTER_RIGHT" layoutX="538.0" layoutY="140.0" prefHeight="21.0" prefWidth="64.0" styleClass="labelInfoChart" stylesheets="@abaRefeicoes.css" textFill="#b90808" AnchorPane.topAnchor="140.0">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="602.0" layoutY="148.0" text="g" textFill="#b90808">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="caloriasPane" alignment="CENTER_RIGHT" layoutX="513.0" layoutY="213.0" prefHeight="21.0" prefWidth="72.0" styleClass="labelInfoChart" stylesheets="@abaRefeicoes.css" textFill="WHITE">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="589.0" layoutY="223.0" text="Kcal" textFill="WHITE">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="fibrasPane" alignment="CENTER_RIGHT" layoutX="522.0" layoutY="178.0" prefHeight="21.0" prefWidth="80.0" styleClass="labelInfoChart" stylesheets="@abaRefeicoes.css" textFill="#730e9e">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="602.0" layoutY="183.0" text="g" textFill="#730e9e">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="backgroundPane" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </AnchorPane>
+                              <AnchorPane layoutX="277.0" layoutY="279.0" prefHeight="268.0" prefWidth="623.0" stylesheets="@abaRefeicoes.css">
+                                 <styleClass>
+                                    <String fx:value="white-bg" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                                 <children>
+                                    <TextField fx:id="a1add" layoutX="31.0" layoutY="35.0" prefHeight="7.0" prefWidth="122.0" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <TextField fx:id="a2add" layoutX="31.0" layoutY="61.0" prefHeight="7.0" prefWidth="122.0" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <TextField fx:id="a3add" layoutX="31.0" layoutY="87.0" prefHeight="7.0" prefWidth="122.0" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <TextField fx:id="a4add" layoutX="31.0" layoutY="113.0" prefHeight="7.0" prefWidth="122.0" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <TextField fx:id="a5add" layoutX="31.0" layoutY="139.0" prefHeight="7.0" prefWidth="122.0" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <TextField fx:id="a6add" layoutX="31.0" layoutY="165.0" prefHeight="7.0" prefWidth="122.0" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <TextField fx:id="a7add" layoutX="31.0" layoutY="191.0" prefHeight="7.0" prefWidth="122.0" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <TextField fx:id="a8add" layoutX="31.0" layoutY="217.0" prefHeight="7.0" prefWidth="122.0" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <Label layoutX="54.0" layoutY="14.0" text="Alimento">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="a1peso" layoutX="169.0" layoutY="35.0" prefHeight="7.0" prefWidth="65.0" promptText="100" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <TextField fx:id="a2peso" layoutX="169.0" layoutY="61.0" prefHeight="7.0" prefWidth="65.0" promptText="100" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <TextField fx:id="a3peso" layoutX="169.0" layoutY="87.0" prefHeight="7.0" prefWidth="65.0" promptText="100" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <TextField fx:id="a4peso" layoutX="169.0" layoutY="113.0" prefHeight="7.0" prefWidth="65.0" promptText="100" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <TextField fx:id="a5peso" layoutX="169.0" layoutY="139.0" prefHeight="7.0" prefWidth="65.0" promptText="100" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <TextField fx:id="a6peso" layoutX="169.0" layoutY="165.0" prefHeight="7.0" prefWidth="65.0" promptText="100" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <TextField fx:id="a7peso" layoutX="169.0" layoutY="191.0" prefHeight="7.0" prefWidth="65.0" promptText="100" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <TextField fx:id="a8peso" layoutX="169.0" layoutY="217.0" prefHeight="7.0" prefWidth="65.0" promptText="100" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <Label layoutX="166.0" layoutY="14.0" text="Peso (g)" AnchorPane.leftAnchor="168.0">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="403.0" layoutY="77.0" prefHeight="21.0" prefWidth="70.0" text="Nome ">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="17.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="nomeNovaRefeiçao" layoutX="345.0" layoutY="113.0" prefHeight="26.0" prefWidth="187.0" promptText="Nome" styleClass="textfield" stylesheets="@abaRefeicoes.css" />
+                                    <FontAwesomeIconView glyphName="TAGS" layoutX="381.0" layoutY="93.0" size="16" />
+                                    <Button layoutX="493.0" layoutY="198.0" mnemonicParsing="false" onAction="#addNovaRefeiçaoLista" prefHeight="39.0" prefWidth="78.0" styleClass="button-add" stylesheets="@dashboard.css" text="Add" />
+                                    <Button layoutX="411.0" layoutY="198.0" mnemonicParsing="false" onAction="#atualizaRefeiçaoListaGeral" prefHeight="39.0" prefWidth="68.0" styleClass="button-up" stylesheets="@dashboard.css" text="Update" />
+                                    <Button layoutX="327.0" layoutY="198.0" mnemonicParsing="false" onAction="#deletaRefeiçaoListaGeral" prefHeight="39.0" prefWidth="71.0" styleClass="button-exclui" stylesheets="@dashboard.css" text="Excluir" />
+                                    <Line endX="130.0" endY="-17.0" layoutX="268.0" layoutY="151.0" rotate="90.0" startX="-98.0" startY="-17.0" stroke="#d7d4d4" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="alimentosPage" layoutX="9.0" layoutY="14.0" prefHeight="547.0" prefWidth="899.0" stylesheets="@loginDesign.css" visible="false">
+                           <children>
+                              <AnchorPane layoutY="-6.0" prefHeight="558.0" prefWidth="562.0" stylesheets="@abaAlimentos.css">
+                                 <children>
+                                    <TextField fx:id="filtraAlimentos" layoutX="31.0" layoutY="11.0" prefHeight="24.0" prefWidth="152.0" promptText="Alimento" styleClass="text-field-alimentosFilter" stylesheets="@abaRefeicoes.css" />
+                                    <Label layoutX="232.0" layoutY="12.0" text="ALIMENTOS" textFill="WHITE">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <AnchorPane layoutX="8.0" layoutY="11.0" prefHeight="25.0" prefWidth="23.0" styleClass="back-iconSearch" stylesheets="@loginDesign.css">
+                                       <children>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" layoutX="6.0" layoutY="18.0" wrappingWidth="12.350000381469727" />
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane layoutY="49.0" prefHeight="452.0" prefWidth="562.0" styleClass="background-tableAlimentos">
+                                       <children>
+                                          <TableView fx:id="tabelaAlimentos" prefHeight="509.0" prefWidth="562.0" styleClass="tabela-back-alimentos" stylesheets="@abaAlimentos.css">
+                                            <columns>
+                                              <TableColumn fx:id="nomeAlimento" minWidth="0.0" prefWidth="112.0" styleClass="leftTableAlimentos" text="Nome" />
+                                              <TableColumn fx:id="carboAlimento" prefWidth="87.0" text="Carboidratos" />
+                                                <TableColumn fx:id="proteinasAlimento" prefWidth="77.0" text="Proteínas" />
+                                                <TableColumn fx:id="gordurasAlimento" prefWidth="110.0" text="Gorduras totais" />
+                                                <TableColumn fx:id="fibrasAlimento" prefWidth="87.0" text="Fibras" />
+                                                <TableColumn fx:id="caloriasAlimento" prefWidth="88.0" styleClass="rightTableAlimentos" text="Calorias" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                    <Label layoutX="483.0" layoutY="30.0" text="Data by: USDA">
+                                       <font>
+                                          <Font size="10.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="back-top-alimentos" />
+                                    <String fx:value="shadow" />
+                                 </styleClass></AnchorPane>
+                              <AnchorPane layoutX="571.0" layoutY="-6.0" prefHeight="220.0" prefWidth="330.0" styleClass="white-bg">
+                                 <children>
+                                    <ImageView fx:id="imagemAlimento" fitHeight="226.0" fitWidth="329.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="571.0" layoutY="227.0" prefHeight="325.0" prefWidth="330.0" stylesheets="@abaAlimentos.css">
+                                 <children>
+                                    <Label fx:id="nomeAlimentoDescriçao" alignment="CENTER" layoutX="95.0" layoutY="14.0" prefHeight="15.0" prefWidth="141.0" text="Arroz branco">
+                                       <font>
+                                          <Font name="Arial Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <FontAwesomeIconView glyphName="CIRCLE" layoutX="11.0" layoutY="71.0" size="8" />
+                                    <Label alignment="TOP_LEFT" layoutX="28.0" layoutY="58.0" prefHeight="147.0" prefWidth="276.0" text="É uma excelente fonte de energia, devido à alta concentração de carboidratos, principalmente amido, fornecendo também proteínas, vitaminas e minerais, e possui baixo teor de lipídios, constituindo alimento importante para o equilíbrio alimentar e nutricional na alimentação saudável." wrapText="true" />
+                                    <Line endX="166.0" layoutX="161.0" layoutY="212.0" startX="-157.0" stroke="#b5b5b5" />
+                                    <Line endX="166.0" layoutX="161.0" layoutY="49.0" startX="-157.0" stroke="#b5b5b5" />
+                                    <Label layoutX="18.0" layoutY="233.0" text="Solicitar alimento">
+                                       <font>
+                                          <Font name="Tahoma Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="nomeAlimentoSolicitado" layoutX="162.0" layoutY="230.0" promptText="alimento" />
+                                    <Button layoutX="241.0" layoutY="277.0" mnemonicParsing="false" onAction="#solicitaAlimento" styleClass="button-add" stylesheets="@dashboard.css" text="Enviar" />
+                                 </children>
+                                 <styleClass>
+                                    <String fx:value="back-infoAlimentos" />
+                                    <String fx:value="shadow" />
+                                 </styleClass>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </center>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
