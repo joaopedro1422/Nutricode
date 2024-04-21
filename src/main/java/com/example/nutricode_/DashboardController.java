@@ -1,12 +1,7 @@
 package com.example.nutricode_;
 
 
-import com.itextpdf.kernel.colors.DeviceRgb;
-import com.itextpdf.kernel.font.PdfFont;
-import com.itextpdf.kernel.font.PdfFontFactory;
-import com.itextpdf.kernel.geom.Line;
-import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
-import com.itextpdf.layout.property.TextAlignment;
+
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
@@ -32,10 +27,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.controlsfx.control.textfield.TextFields;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Paragraph;
 
 
 
@@ -46,7 +37,7 @@ import java.nio.file.Paths;
 import java.sql.*;
 import java.util.*;
 
-import static com.itextpdf.kernel.PdfException.PdfEncodings;
+
 
 public class DashboardController implements Initializable {
 
@@ -204,6 +195,7 @@ public class DashboardController implements Initializable {
     private PreparedStatement prepare;
     private ResultSet result;
 
+    private JasperReportGenerate jasperReportGenerate;
 
     @FXML
     private Label tituloPane;
@@ -229,6 +221,7 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         segundaButton.requestFocus(); // Define o foco no botão "segundaButton"
+        jasperReportGenerate= new JasperReportGenerate();
         setUser();
         defineNomeUser();
         addAlimentosTable();
@@ -263,32 +256,82 @@ public class DashboardController implements Initializable {
 
     public void geraRelatorio(){
         try{
-            Path desktopPath = Paths.get(System.getProperty("user.home"), "Desktop");
-            String filePath = desktopPath.resolve("RelatorioNutricode.pdf").toString();
-            PdfDocument pdfDoc = new PdfDocument(new PdfWriter(filePath));
-            Document doc = new Document(pdfDoc);
+            HashMap<String,Object> dadosUsuario= new HashMap<>();
+            HashMap<String, Object> mediasDia  = new HashMap<>();
+            HashMap<String, Object> nutrientesSegunda = new HashMap<>();
+            HashMap<String, Object> nutrientesTerça = new HashMap<>();
+            HashMap<String, Object> nutrientesQuarta = new HashMap<>();
+            HashMap<String, Object> nutrientesQuinta = new HashMap<>();
+            HashMap<String, Object> nutrientesSexta = new HashMap<>();
+            HashMap<String, Object> nutrientesSabado = new HashMap<>();
+            HashMap<String, Object> nutrientesDomingo = new HashMap<>();
+            mediasDia= initInfosCard();
+            nutrientesSegunda= getNutrientesDia(1);
+            nutrientesTerça= getNutrientesDia(2);
+            nutrientesQuarta= getNutrientesDia(3);
+            nutrientesQuinta= getNutrientesDia(4);
+            nutrientesSexta= getNutrientesDia(5);
+            nutrientesSabado= getNutrientesDia(6);
+            nutrientesDomingo= getNutrientesDia(7);
+            dadosUsuario.put("carboidratosDia", String.format("%.1f",mediasDia.get("carboidratosDia")));
+            dadosUsuario.put("caloriasDia",String.format("%.1f",mediasDia.get("caloriasDia")));
+            dadosUsuario.put("proteinasDia", String.format("%.1f",mediasDia.get("proteinasDia")));
+            dadosUsuario.put("fibrasDia",String.format("%.1f",mediasDia.get("fibrasDia")));
+            dadosUsuario.put("gordurasDia", String.format("%.1f",mediasDia.get("gordurasDia")));
+            dadosUsuario.put("qntRefeiçoes", String.format("%.1f",mediasDia.get("qntRefeiçoes")));
+            dadosUsuario.put("caloriasSegunda", String.format("%.1f", nutrientesSegunda.get("calorias")));
+            dadosUsuario.put("gordurasSegunda", String.format("%.1f",nutrientesSegunda.get("gorduras")));
+            dadosUsuario.put("caloriasTerça", String.format("%.1f", nutrientesTerça.get("calorias")));
+            dadosUsuario.put("gordurasTerça", String.format("%.1f",nutrientesTerça.get("gorduras")));
+            dadosUsuario.put("caloriasQuarta", String.format("%.1f", nutrientesQuarta.get("calorias")));
+            dadosUsuario.put("gordurasQuarta", String.format("%.1f", nutrientesQuarta.get("gorduras")));
+            dadosUsuario.put("caloriasQuinta", String.format("%.1f", nutrientesQuinta.get("calorias")));
+            dadosUsuario.put("gordurasQuinta", String.format("%.1f", nutrientesQuinta.get("gorduras")));
+            dadosUsuario.put("caloriasSexta", String.format("%.1f", nutrientesSexta.get("calorias")));
+            dadosUsuario.put("gordurasSexta", String.format("%.1f", nutrientesSexta.get("gorduras")));
+            dadosUsuario.put("caloriasSabado", String.format("%.1f", nutrientesSabado.get("calorias")));
+            dadosUsuario.put("gordurasSabado", String.format("%.1f", nutrientesSabado.get("gorduras")));
+            dadosUsuario.put("caloriasDomingo", String.format("%.1f", nutrientesDomingo.get("calorias")));
+            dadosUsuario.put("gordurasDomingo", String.format("%.1f", nutrientesDomingo.get("gorduras")));
+            jasperReportGenerate.gerarRelatorio(user,dadosUsuario);
 
-            Path concertONeFontPath = Paths.get("src/main/resources/com/example/nutricode_/ConcertOne-Regular.ttf"); // Substitua pelo caminho correto
-            // Criação da fonte Tahoma
-            PdfFont fontTitulo = PdfFontFactory.createFont(concertONeFontPath.toString(), true);
-            float fontSize = 24;
-            Paragraph title = new Paragraph("Nutricode")
-                    .setFont(fontTitulo)
-                    .setFontSize(fontSize)
-                    .setTextAlignment(TextAlignment.CENTER);
-            // Adicionar conteúdo ao documento
-            Path latoFontPath = Paths.get("src/main/resources/com/example/nutricode_/Lato-Regular.ttf"); // Substitua pelo caminho correto
-            // Criação da fonte Tahoma
-            PdfFont fontBody = PdfFontFactory.createFont(latoFontPath.toString(), true);
-            doc.add(title);
-            doc.add(new Paragraph("Usuário: "+user.getNome()
-                            +"\nCPF: 066.300.405-05"))
-                    .setFont(fontBody);
-            System.out.println("Relatório PDF gerado com sucesso.");
         }catch(Exception e){
             e.printStackTrace();
         }
-
+    }
+    public HashMap<String,Object> getNutrientesDia(int dia){
+        HashMap<String,Object> nutrientesDia= new HashMap<>();
+        try{
+            ObservableList<RefeicaoData> refeiçoesDia= FXCollections.observableArrayList();
+            String sql = "SELECT nome_refeiçao FROM refeiçao_dia WHERE Dia_semana = ?";
+            connect= Database.connectDb();
+            prepare= connect.prepareStatement(sql);
+            prepare.setString(1,String.valueOf(dia));
+            result= prepare.executeQuery();
+            RefeicaoData refeiçao = null;
+            while(result.next()){
+                String nome = result.getString("nome_Refeiçao");
+                for(RefeicaoData r: listaRefeiçoes){
+                    if(r.getNome().equalsIgnoreCase(nome)){
+                        refeiçao = r;
+                    }
+                }
+                refeiçoesDia.add(refeiçao);
+            }
+            float totalCalorias=0;
+            float totalGorduras=0;
+            //iterando sobre a lista de refeiçoes do dia para obter os nutrientes totais
+            for(RefeicaoData r:refeiçoesDia){
+                totalCalorias+= r.getCalorias();
+                totalGorduras+= r.getGorduras();
+            }
+             // chama o metodo para inserir os dados na tabela do dia selecionado
+            nutrientesDia.put("calorias",totalCalorias);
+            nutrientesDia.put("gorduras",totalGorduras);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return nutrientesDia;
     }
     public void solicitaAlimento(){
         String sql = "INSERT INTO solicitaçoes"
@@ -311,7 +354,8 @@ public class DashboardController implements Initializable {
         }
     }
 
-    public void initInfosCard(){
+    public HashMap<String,Object> initInfosCard(){
+        HashMap<String, Object> medias= new HashMap<>();
         try{
             String sql= "SELECT nome_refeiçao FROM refeiçao_dia";
             ObservableList<RefeicaoData> todasRefeiçoesEmUso= FXCollections.observableArrayList();
@@ -321,6 +365,9 @@ public class DashboardController implements Initializable {
             float carboidratosTotais= 0;
             float caloriasTotais=0;
             float proteinasTotais=0;
+            float fibrasTotais=0;
+            float gordurasTotais=0;
+            float qntRefeiçoes=0;
             String nomeRefeiçao;
             while(result.next()){
                 nomeRefeiçao= result.getString("nome_refeiçao");
@@ -329,6 +376,9 @@ public class DashboardController implements Initializable {
                         carboidratosTotais+= r.getCarboidratos();
                         caloriasTotais+= r.getCalorias();
                         proteinasTotais+= r.getProteinas();
+                        fibrasTotais+= r.getFibras();
+                        gordurasTotais+= r.getGorduras();
+                        qntRefeiçoes++;
                         todasRefeiçoesEmUso.add(r);
                     }
                 }
@@ -336,13 +386,22 @@ public class DashboardController implements Initializable {
             float mediaProteinas = proteinasTotais/7;
             float mediaCalorias= caloriasTotais/7;
             float mediaCarboidratos = carboidratosTotais/7;
+            float mediaFibras = fibrasTotais/7;
+            float mediaGorduras = gordurasTotais/7;
+            float mediaQntRefeiçoes = qntRefeiçoes/7;
+            medias.put("carboidratosDia",mediaCarboidratos);
+            medias.put("proteinasDia", mediaProteinas);
+            medias.put("caloriasDia",mediaCalorias);
+            medias.put("fibrasDia", mediaFibras);
+            medias.put("gordurasDia",mediaGorduras);
+            medias.put("qntRefeiçoes",mediaQntRefeiçoes);
             mediaCarbo.setText(String.format("%.1f", mediaCarboidratos));
             mediaProt.setText(String.format("%.1f", mediaProteinas));
             mediaCal.setText(String.format("%.1f", mediaCalorias));
         }catch (Exception e){
             e.printStackTrace();
         }
-
+        return medias;
     }
 
     /**
@@ -801,7 +860,6 @@ public class DashboardController implements Initializable {
         }catch (Exception e){
             e.printStackTrace();
         }
-
     }
 
     public void addRefeiçoesTableDia(ObservableList<RefeicaoData> refeiçoesDoDia){
@@ -821,20 +879,23 @@ public class DashboardController implements Initializable {
     }
 
     public void initNutrientesDia(ObservableList<RefeicaoData> lista){
-        for(RefeicaoData r: lista) {
-            caloriasDiaF += r.getCalorias();
-            carboidratosDiaF += r.getCarboidratos();
-            proteinasDiaF += r.getProteinas();
-            gordurasDiaF += r.getGorduras();
-            fibrasDiaF += r.getFibras();
+        if(!lista.isEmpty()) {
+            for (RefeicaoData r : lista) {
+                caloriasDiaF += r.getCalorias();
+                carboidratosDiaF += r.getCarboidratos();
+                proteinasDiaF += r.getProteinas();
+                gordurasDiaF += r.getGorduras();
+                fibrasDiaF += r.getFibras();
+            }
         }
-        int qntdRef = lista.size();
-        qntRefeiçoesDia.setText(String.valueOf(qntdRef));
-        carboidratosDia.setText(String.format("%.1f", carboidratosDiaF));
-        caloriasDia.setText(String.format("%.1f", caloriasDiaF));
-        proteinasDia.setText(String.format("%.1f", proteinasDiaF));
-        gordurasDia.setText(String.format("%.1f", gordurasDiaF));
-        fibrasDia.setText(String.format("%.1f", fibrasDiaF));
+            int qntdRef = lista.size();
+            qntRefeiçoesDia.setText(String.valueOf(qntdRef));
+            carboidratosDia.setText(String.format("%.1f", carboidratosDiaF));
+            caloriasDia.setText(String.format("%.1f", caloriasDiaF));
+            proteinasDia.setText(String.format("%.1f", proteinasDiaF));
+            gordurasDia.setText(String.format("%.1f", gordurasDiaF));
+            fibrasDia.setText(String.format("%.1f", fibrasDiaF));
+
     }
 
     public void resetNutrientesDia(){

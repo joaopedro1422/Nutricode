@@ -9,7 +9,8 @@ module com.example.nutricode_ {
     exports com.example.nutricode_;
     requires javafx.graphics;
     requires org.controlsfx.controls;
-    requires kernel;
-    requires layout;
+    requires jasperreports;
+    requires java.desktop;
+
 
 }
