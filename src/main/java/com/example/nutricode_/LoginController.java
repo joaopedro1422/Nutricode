@@ -15,9 +15,18 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class LoginController  {
+    @FXML
+    private TextField nomeNovoUsuario,cpfNovoUsuario,pesoNovoUsuario,alturaNovoUsuario,loginNovoUsuario;
+    @FXML
+    private PasswordField senhaNovoUsuario;
+
+    @FXML
+    private AnchorPane loginPage,registroPage;
     @FXML
     private Label label;
 
@@ -45,6 +54,7 @@ public class LoginController  {
     private Connection connect;
     private PreparedStatement prepare;
     private ResultSet result;
+    private Statement statement;
 
     private  double x=0;
     private double y=0;
@@ -72,8 +82,11 @@ public class LoginController  {
                 alert.showAndWait();
             } else {
                 if (result.next()) {
-                    user= new Usuario(result.getString("nome"),result.getString("usuario"),result.getString("senha") );
+                    user= new Usuario(result.getInt("id_usuario"),result.getString("nome"),result.getString("usuario"),result.getString("senha"),
+                            result.getString("cpf"),result.getFloat("peso"),result.getDouble("altura") );
                     loginButton.getScene().getWindow().hide();
+                    System.out.println(user.getAltura());
+                    System.out.println(user.getCpf());
                     Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
                     Stage stage= new Stage();
                     Scene scene= new Scene(root);
@@ -102,6 +115,78 @@ public class LoginController  {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void registra(){
+        String sql = "INSERT INTO logins "
+                + "(usuario,senha,nome,peso,altura,cpf)"
+                + "VALUES(?,?,?,?,?,?)";
+        connect = Database.connectDb();
+        Alert alert;
+        try{
+            if(existeUsuario(loginNovoUsuario.getText())) {
+                alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erro de registro");
+                alert.setHeaderText(null);
+                alert.setContentText("O usuario: "+loginNovoUsuario.getText()+" já existe");
+                alert.showAndWait();
+                return;
+            }
+            if(loginNovoUsuario.getText().isEmpty() || senhaNovoUsuario.getText().isEmpty() || nomeNovoUsuario.getText().isEmpty() ||
+                alturaNovoUsuario.getText().isEmpty() || cpfNovoUsuario.getText().isEmpty()){
+                alert= new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Campos em branco");
+                alert.setHeaderText(null);
+                alert.setContentText("Todos os campos são obrigatórios");
+                alert.showAndWait();
+                return;
+            }
+            prepare= connect.prepareStatement(sql);
+            prepare.setString(1,loginNovoUsuario.getText());
+            prepare.setString(2,senhaNovoUsuario.getText());
+            prepare.setString(3,nomeNovoUsuario.getText());
+            prepare.setString(4,pesoNovoUsuario.getText());
+            prepare.setString(5,alturaNovoUsuario.getText());
+            prepare.setString(6,cpfNovoUsuario.getText());
+            prepare.executeUpdate();
+            registroPage.setVisible(false);
+            loginPage.setVisible(true);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void getToRegistraPage(){
+        loginPage.setVisible(false);
+        registroPage.setVisible(true);
+    }
+
+    public void getToLoginPage(){
+        registroPage.setVisible(false);
+        loginPage.setVisible(true);
+    }
+
+    public boolean existeUsuario(String usuario){
+        boolean existe=false;
+        String sql = "SELECT * FROM logins";
+        connect= Database.connectDb();
+        ArrayList<String> usuarios = new ArrayList<>();
+        try{
+            statement= connect.createStatement();
+            result= statement.executeQuery(sql);
+            while(result.next()){
+                usuarios.add(result.getString("usuario"));
+            }
+            if(usuarios.contains(usuario)){
+                existe= true;
+            }
+            else {
+                existe= false;
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return existe;
     }
 
 

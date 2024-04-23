@@ -127,7 +127,7 @@
                            <children>
                               <AnchorPane layoutY="-6.0" prefHeight="165.0" prefWidth="895.0" stylesheets="@loginDesign.css">
                                  <children>
-                                    <AnchorPane layoutX="9.0" layoutY="10.0" prefHeight="147.0" prefWidth="266.0" stylesheets="@loginDesign.css">
+                                    <AnchorPane fx:id="cardProteinas" layoutX="9.0" layoutY="10.0" prefHeight="147.0" prefWidth="270.0" stylesheets="@loginDesign.css">
                                        <children>
                                           <FontAwesomeIconView fill="WHITE" glyphName="BAR_CHART_ALT" layoutX="14.0" layoutY="99.0" size="51" wrappingWidth="66.7142858505249" />
                                           <Label layoutX="88.0" layoutY="106.0" prefHeight="17.0" prefWidth="119.0" text="Proteínas" textFill="WHITE">
@@ -140,9 +140,9 @@
                                                 <Font name="Arial" size="11.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="mediaProt" alignment="CENTER_RIGHT" layoutX="120.0" layoutY="13.0" prefHeight="17.0" prefWidth="119.0" text="110" textFill="WHITE">
+                                          <Label fx:id="mediaProt" alignment="CENTER_RIGHT" layoutX="120.0" layoutY="13.0" prefHeight="17.0" prefWidth="119.0" styleClass="numeros" text="110" textFill="WHITE">
                                              <font>
-                                                <Font name="Arial Bold" size="29.0" />
+                                                <Font name="Arial" size="28.0" />
                                              </font>
                                           </Label>
                                           <Label layoutX="239.0" layoutY="30.0" text="g" textFill="WHITE" AnchorPane.bottomAnchor="108.0" AnchorPane.rightAnchor="17.0">
@@ -150,13 +150,18 @@
                                                 <Font name="Arial Bold" size="15.0" />
                                              </font>
                                           </Label>
+                                          <Button fx:id="indicadorProteinas" layoutX="154.0" layoutY="24.0" minHeight="0.0" minWidth="19.0" mnemonicParsing="false" onAction="#getTofeedbackProteinas" prefHeight="22.0" prefWidth="19.0" styleClass="button-feedback" stylesheets="@dashboard.css">
+                                             <font>
+                                                <Font size="1.0" />
+                                             </font>
+                                          </Button>
                                        </children>
                                        <styleClass>
                                           <String fx:value="card" />
                                           <String fx:value="shadow" />
                                        </styleClass>
                                     </AnchorPane>
-                                    <AnchorPane layoutX="307.0" layoutY="10.0" prefHeight="146.0" prefWidth="276.0" stylesheets="@loginDesign.css">
+                                    <AnchorPane fx:id="cardCarboidratos" layoutX="307.0" layoutY="10.0" prefHeight="146.0" prefWidth="276.0" stylesheets="@loginDesign.css">
                                        <children>
                                           <FontAwesomeIconView fill="WHITE" glyphName="PIE_CHART" layoutX="23.0" layoutY="99.0" size="51" wrappingWidth="66.7142858505249" />
                                           <Label layoutX="79.0" layoutY="106.0" prefHeight="21.0" prefWidth="148.0" text="Carboidratos" textFill="WHITE">
@@ -169,7 +174,7 @@
                                                 <Font name="Arial" size="11.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="mediaCarbo" alignment="CENTER_RIGHT" layoutX="125.0" layoutY="13.0" prefHeight="17.0" prefWidth="119.0" text="215" textFill="WHITE">
+                                          <Label fx:id="mediaCarbo" alignment="CENTER_RIGHT" layoutX="125.0" layoutY="13.0" prefHeight="17.0" prefWidth="119.0" styleClass="numeros" stylesheets="@loginDesign.css" text="215" textFill="WHITE">
                                              <font>
                                                 <Font name="Arial Bold" size="28.0" />
                                              </font>
@@ -179,13 +184,18 @@
                                                 <Font name="Arial Bold" size="14.0" />
                                              </font>
                                           </Label>
+                                          <Button fx:id="indicadorCarboidratos" layoutX="153.0" layoutY="23.0" minHeight="0.0" minWidth="19.0" mnemonicParsing="false" onAction="#getTofeedbackCarbo" prefHeight="22.0" prefWidth="19.0" styleClass="button-feedback" stylesheets="@dashboard.css">
+                                             <font>
+                                                <Font size="1.0" />
+                                             </font>
+                                          </Button>
                                        </children>
                                        <styleClass>
                                           <String fx:value="card" />
                                           <String fx:value="shadow" />
                                        </styleClass>
                                     </AnchorPane>
-                                    <AnchorPane layoutX="613.0" layoutY="10.0" prefHeight="147.0" prefWidth="273.0" stylesheets="@loginDesign.css" AnchorPane.rightAnchor="9.0">
+                                    <AnchorPane fx:id="cardCalorias" layoutX="613.0" layoutY="10.0" prefHeight="147.0" prefWidth="273.0" stylesheets="@loginDesign.css" AnchorPane.rightAnchor="9.0">
                                        <children>
                                           <FontAwesomeIconView fill="WHITE" glyphName="LINE_CHART" layoutX="25.0" layoutY="99.0" size="51" wrappingWidth="66.7142858505249" />
                                           <Label layoutX="101.0" layoutY="106.0" prefHeight="17.0" prefWidth="119.0" text="Calorias" textFill="WHITE">
@@ -198,9 +208,9 @@
                                                 <Font name="Arial" size="11.0" />
                                              </font>
                                           </Label>
-                                          <Label fx:id="mediaCal" alignment="CENTER_RIGHT" layoutX="110.0" layoutY="12.0" prefHeight="17.0" prefWidth="119.0" text="2150" textFill="WHITE">
+                                          <Label fx:id="mediaCal" alignment="CENTER_RIGHT" layoutX="110.0" layoutY="12.0" prefHeight="17.0" prefWidth="119.0" styleClass="numeros" text="2150" textFill="WHITE">
                                              <font>
-                                                <Font name="Arial Bold" size="28.0" />
+                                                <Font name="Arial" size="28.0" />
                                              </font>
                                           </Label>
                                           <Label layoutX="229.0" layoutY="28.0" text="Kcal" textFill="WHITE">
@@ -208,6 +218,11 @@
                                                 <Font name="Arial Bold" size="14.0" />
                                              </font>
                                           </Label>
+                                          <Button fx:id="indicadorCalorias" layoutX="132.0" layoutY="23.0" minHeight="0.0" minWidth="19.0" mnemonicParsing="false" onAction="#getTofeedbackCalorias" prefHeight="22.0" prefWidth="19.0" styleClass="button-feedback" stylesheets="@dashboard.css">
+                                             <font>
+                                                <Font size="1.0" />
+                                             </font>
+                                          </Button>
                                        </children>
                                        <styleClass>
                                           <String fx:value="card" />
@@ -216,6 +231,66 @@
                                     </AnchorPane>
                                     <Line endX="68.0" layoutX="288.0" layoutY="83.0" rotate="90.0" startX="-59.0" stroke="#eeeeee" />
                                     <Line endX="68.0" layoutX="593.0" layoutY="83.0" rotate="90.0" startX="-59.0" stroke="#eeeeee" />
+                                    <AnchorPane fx:id="cardFeedbackProteinas" layoutX="14.0" layoutY="10.0" prefHeight="147.0" prefWidth="266.0" stylesheets="@dashboard.css" visible="false">
+                                       <children>
+                                          <Label layoutX="28.0" layoutY="14.0" text="Quantidade recomendada :" />
+                                          <Label fx:id="quantidadeRecProteinas" alignment="CENTER" layoutX="211.0" layoutY="14.0" prefHeight="19.0" prefWidth="52.0" text="85g" />
+                                          <Label fx:id="descriçaoFeedbackProteinas" alignment="TOP_LEFT" layoutX="4.0" layoutY="41.0" prefHeight="101.0" prefWidth="261.0" styleClass="textoDesc" text="! Quantidades de proteínas abaixo das reco- mendações mínimas podem acarretar em: perda muscular, Problemas de pele / cabelo e unhas , retardo na cicatrização de feridas e etc. Recomenda-se uma maior ingestão de Carnes, peixes, Ovos e leguminosas." wrapText="true">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Button layoutX="3.0" layoutY="13.0" minWidth="34.0" mnemonicParsing="false" onAction="#getToCardProteinas" prefHeight="30.0" prefWidth="34.0" styleClass="button-back-feedback" stylesheets="@dashboard.css">
+                                             <graphic>
+                                                <FontAwesomeIconView glyphName="ARROW_CIRCLE_ALT_LEFT" size="20" wrappingWidth="15.40000057220459" />
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="shadow" />
+                                          <String fx:value="card-feedback" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="cardFeedbackCarbo" layoutX="312.0" layoutY="10.0" prefHeight="147.0" prefWidth="266.0" stylesheets="@dashboard.css" visible="false">
+                                       <children>
+                                          <Label layoutX="28.0" layoutY="14.0" text="Quantidade recomendada :" />
+                                          <Label fx:id="quantidadeRecCarbo" layoutX="213.0" layoutY="14.0" prefHeight="19.0" prefWidth="40.0" text="140g" />
+                                          <Label fx:id="descriçaoFeedbackCarbo" alignment="TOP_LEFT" layoutX="4.0" layoutY="41.0" prefHeight="101.0" prefWidth="261.0" styleClass="textoDesc" text="! Quantidades de carboidratos abaixo das recomendações mímimas podem causar: impactos cognitivos -como dificuldades de concentração-  e falta de energia para as atividades diárias. Recomenda-se uma maior ingestão de frutas, massas e grãos." wrapText="true">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Button layoutX="3.0" layoutY="13.0" minWidth="34.0" mnemonicParsing="false" onAction="#getToCardCarbo" prefHeight="30.0" prefWidth="34.0" styleClass="button-back-feedback" stylesheets="@dashboard.css">
+                                             <graphic>
+                                                <FontAwesomeIconView glyphName="ARROW_CIRCLE_ALT_LEFT" size="20" wrappingWidth="15.40000057220459" />
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="shadow" />
+                                          <String fx:value="card-feedback" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                    <AnchorPane fx:id="cardFeedbackCalorias" layoutX="613.0" layoutY="10.0" prefHeight="147.0" prefWidth="266.0" stylesheets="@dashboard.css" visible="false">
+                                       <children>
+                                          <Label layoutX="28.0" layoutY="14.0" text="Quantidade recomendada :" />
+                                          <Label fx:id="quantidadeRecCalorias" layoutX="209.0" layoutY="14.0" prefHeight="19.0" prefWidth="62.0" text="1500Kcal" />
+                                          <Label fx:id="descriçaoFeedbackCalorias" alignment="TOP_LEFT" layoutX="4.0" layoutY="41.0" prefHeight="101.0" prefWidth="270.0" styleClass="textoDesc" text="! A quantidade calórica, quando não ingerida adequadamente pode causar: perda de peso excessiva, fraqueza, fadiga e impactos nega- tivos nos hormônios naturais. Recomenda-se maior ingestão de nozes , sementes , produtos lácteos e massas (seguindo possível dieta)." wrapText="true">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Button layoutX="3.0" layoutY="13.0" minWidth="34.0" mnemonicParsing="false" onAction="#getToCardCalorias" prefHeight="30.0" prefWidth="34.0" styleClass="button-back-feedback" stylesheets="@dashboard.css">
+                                             <graphic>
+                                                <FontAwesomeIconView glyphName="ARROW_CIRCLE_ALT_LEFT" size="20" wrappingWidth="15.40000057220459" />
+                                             </graphic>
+                                          </Button>
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="shadow" />
+                                          <String fx:value="card-feedback" />
+                                       </styleClass>
+                                    </AnchorPane>
                                  </children>
                                  <styleClass>
                                     <String fx:value="white-bg" />

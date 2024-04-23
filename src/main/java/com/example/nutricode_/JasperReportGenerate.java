@@ -20,13 +20,18 @@ public class JasperReportGenerate {
     public static final String arquivoJasper = "/src/main/resources/relatorios/RelatorioNutricode.jasper";
     public static final String logoImg = "src/main/resources/img/LogoNutricode.png";
 
+    public String formataNome(String nome){
+        String[] partes = nome.split(" ");
+        return partes[0]+partes[1];
+    }
+
     public void gerarRelatorio(Usuario usuario, HashMap<String,Object> dadosDousuario){
 
         double peso= usuario.getPeso();
         double altura = usuario.getAltura();
         double imc = peso / (altura*altura);
         String feedBack = analisaImc(imc);
-
+        String nomeUsuarioFormatado = formataNome(usuario.getNome());
         HashMap<String,Object> paramsJasper = new HashMap<>();
         paramsJasper.put("nome", usuario.getNome());
         paramsJasper.put("cpf", usuario.getCpf());
@@ -58,7 +63,7 @@ public class JasperReportGenerate {
 
         try{
             Path desktopPath = Paths.get(System.getProperty("user.home"), "Desktop");
-            String filePath = desktopPath.resolve("RelatorioNutricode.pdf").toString();
+            String filePath = desktopPath.resolve("Relatorio"+nomeUsuarioFormatado+".pdf").toString();
             Path currentRelativePath = Paths.get("");
             String jasperFilePath = currentRelativePath.toAbsolutePath().toString()+arquivoJasper;
             System.out.println(jasperFilePath);

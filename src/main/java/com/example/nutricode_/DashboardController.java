@@ -1,16 +1,12 @@
 package com.example.nutricode_;
 
-
-
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,111 +19,73 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.controlsfx.control.textfield.TextFields;
-
-
-
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.sql.*;
 import java.util.*;
 
 
-
+/**
+ * Classe controller para a interface principal do aplicativo
+ */
 public class DashboardController implements Initializable {
-
+    //Definição dos botões que definem a vizualização dos dias da semana
     @FXML
     private Button segundaButton,terçaButton,quartaButton,quintaButton,sextaButton,sabadoButton,domingoButton;
-
+    // CheckBox de seleção dos dias em que as refeições serão adicionadas ou excluidas
     @FXML
     private CheckBox checkDomingo,checkQuarta,checkQuinta,checkSabado,checkSegunda,checkSexta,checkTerça;
     @FXML
     private TextField nomeRefeiçaoAdc;
-
     @FXML
     private Label qntRefeiçoesDia;
+    @FXML
+    private Button indicadorCarboidratos,indicadorCalorias,indicadorProteinas;
+    // Botões do menu de páginas
     @FXML
     private Button homeButton,paginaRefeiçoesButton,catalogoAlimentosButton;
     @FXML
     private AnchorPane homePage, refeiçoesPage;
-
     @FXML
     private AnchorPane cenaPrincipal;
-
+    // Labels para as informaçoes de cada refeição no painel de exibição
     @FXML
-    private Label caloriasPane;
-
-    @FXML
-    private Label caloriasDia;
-    @FXML
-    private Label fibrasPane;
-
-    @FXML
-    private Label carboPane;
-    @FXML
-    private Label proteinasPane;
-    @FXML
-    private Label GordurasPane;
+    private Label caloriasPane,fibrasPane, carboPane,proteinasPane,GordurasPane;
     @FXML
     private ImageView imagemAlimento;
-
     @FXML
     private AnchorPane alimentosPage;
     @FXML
     private TextField filtraAlimentos;
-
-
     @FXML
     private TextField filtraRefeiçoes;
-
     @FXML
-    private Label carboidratosDia;
-
+    private Label carboidratosDia,fibrasDia,proteinasDia,gordurasDia,caloriasDia;
     @FXML
-    private Label fibrasDia;
+    private AnchorPane cardFeedbackCalorias, cardFeedbackCarbo,cardFeedbackProteinas;
     @FXML
-    private Label proteinasDia;
-
+    private AnchorPane cardProteinas,cardCalorias,cardCarboidratos;
     @FXML
-    private Label gordurasDia;
+    private Label descriçaoFeedbackCalorias,descriçaoFeedbackCarbo,descriçaoFeedbackProteinas;
+    @FXML
+    private Label quantidadeRecCalorias,quantidadeRecCarbo,quantidadeRecProteinas;
 
-    private float carboidratosDiaF=0;
-    private float caloriasDiaF=0;
-    private float fibrasDiaF=0;
-    private float gordurasDiaF=0;
-    private float proteinasDiaF=0;
-
+    private float carboidratosDiaF=0,caloriasDiaF=0,fibrasDiaF=0,gordurasDiaF=0,proteinasDiaF=0;
     @FXML
     private FontAwesomeIconView logout;
-
     @FXML
-    private Label mediaCal;
-
-    @FXML
-    private Label mediaCarbo;
-
-    @FXML
-    private Label mediaProt;
-
-    @FXML
-    private Label nomeUsuario;
-
-
+    private Label mediaCal,mediaCarbo, mediaProt,nomeUsuario;
     @FXML
     private Button logoutButton;
-
     @FXML
     private PieChart graficoNutrientes;
-
     private Usuario user;
-
     @FXML
     private TableView<RefeicaoData> tabelaRefeiçoesDia;
+    //Definições para a tabela do catálogo de alimentos
     @FXML
     private TableView<AlimentoData> tabelaAlimentos;
     @FXML
@@ -136,70 +94,30 @@ public class DashboardController implements Initializable {
     private ObservableList<AlimentoData> listaAlimentos;
     @FXML
     private TableColumn<RefeicaoData, String> nomeRefeiçaoDia;
-
+    // colunas dos alimentos de cada refeição da tabela
     @FXML
-    private TableColumn<RefeicaoData, String> a1Dia;
-
-    @FXML
-    private TableColumn<RefeicaoData, String> a2Dia;
-
-    @FXML
-    private TableColumn<RefeicaoData, String> a3Dia;
-
-    @FXML
-    private TableColumn<RefeicaoData, String> a4Dia;
-
-    @FXML
-    private TableColumn<RefeicaoData, String> a5Dia;
-
-    @FXML
-    private TableColumn<RefeicaoData, String> a6Dia;
-
-    @FXML
-    private TableColumn<RefeicaoData, String> a7Dia;
-
-    @FXML
-    private TableColumn<RefeicaoData, String> a8Dia;
+    private TableColumn<RefeicaoData, String> a1Dia,a2Dia,a3Dia,a4Dia,a5Dia,a6Dia,a7Dia,a8Dia;
+    //icones de Lista que serão adicionados antes do nome de cada alimento, caso existam
     @FXML
     private FontAwesomeIconView a1icon,a2icon,a3icon,a4icon,a5icon,a6icon,a7icon,a8icon;
-
+    //TextFields para os alimentos que serão inseridos na refeição
     @FXML
     private TextField a1add,a2add,a3add,a4add,a5add,a6add,a7add,a8add;
-
-
+    //TextFields para os pesos dos alimentos que serão inseridos na refeiçao
     @FXML
     private TextField a1peso,a2peso,a3peso,a4peso,a5peso,a6peso,a7peso,a8peso;
-
     @FXML
     private TextField nomeNovaRefeiçao;
-
     @FXML
-    private Label a1Pane;
-    @FXML
-    private Label a2Pane;
-    @FXML
-    private Label a3Pane;
-
-    @FXML
-    private Label a4Pane;
-    @FXML
-    private Label a5Pane;
-    @FXML
-    private Label a6Pane;
-    @FXML
-    private Label a7Pane;
-    @FXML
-    private Label a8Pane;
+    private Label a1Pane,a2Pane,a3Pane,a4Pane,a5Pane,a6Pane,a7Pane,a8Pane;
+    // Definições dos mecanismos para a interação com o banco de dados
     private Connection connect;
     private Statement statement;
     private PreparedStatement prepare;
     private ResultSet result;
-
     private JasperReportGenerate jasperReportGenerate;
-
     @FXML
     private Label tituloPane;
-
     @FXML
     private TableView<RefeicaoData> tableRefeiçoes;
     private ObservableList<RefeicaoData> listaRefeiçoes;
@@ -209,15 +127,15 @@ public class DashboardController implements Initializable {
     private Label nomeAlimentoDescriçao;
     @FXML
     private TextField nomeAlimentoSolicitado;
-
     private   ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(new PieChart.Data("Proteínas",0),
             new PieChart.Data("Carboidratos", 0),
             new PieChart.Data("Gorduras", 0),
             new PieChart.Data("Fibras", 0));
-
-
-
     private double x,y=0;
+
+    /**
+     *Método padrão de inicialização do controlador
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         segundaButton.requestFocus(); // Define o foco no botão "segundaButton"
@@ -227,33 +145,20 @@ public class DashboardController implements Initializable {
         addAlimentosTable();
         addRefeiçoesTable();
         resetNutrientesDia();
-        initListaDeSugestoesRefeiçoes(nomeRefeiçaoAdc);
+        homeButton.fire();
         pressElementTableAlimentos();
         pressElementTable();
         listaRefeiçoesFiltrada();
         listaAlimentosFiltrado();
-        initListaDeSugestoes(a1add);
-        initListaDeSugestoes(a2add);
-        initListaDeSugestoes(a3add);
-        initListaDeSugestoes(a4add);
-        initListaDeSugestoes(a5add);
-        initListaDeSugestoes(a6add);
-        initListaDeSugestoes(a7add);
-        initListaDeSugestoes(a8add);
-        contemApenasDigitos(a1peso);
-        contemApenasDigitos(a2peso);
-        contemApenasDigitos(a3peso);
-        contemApenasDigitos(a4peso);
-        contemApenasDigitos(a5peso);
-        contemApenasDigitos(a6peso);
-        contemApenasDigitos(a7peso);
-        contemApenasDigitos(a8peso);
         initGrafico();
         initInfosCard();
         segundaButton.fire();
         segundaButton.setStyle("-fx-background-color: #6b0101");
     }
 
+    /**
+     * Método que gera um relatório em pdf com os principais dados nutricionais do usuário
+     */
     public void geraRelatorio(){
         try{
             HashMap<String,Object> dadosUsuario= new HashMap<>();
@@ -299,14 +204,22 @@ public class DashboardController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Método que obtém as quantidades totais de nutrientes de cada dia da semana, de acordo com o dia passado
+     * como argumento
+     * @param dia
+     * @return
+     */
     public HashMap<String,Object> getNutrientesDia(int dia){
         HashMap<String,Object> nutrientesDia= new HashMap<>();
         try{
             ObservableList<RefeicaoData> refeiçoesDia= FXCollections.observableArrayList();
-            String sql = "SELECT nome_refeiçao FROM refeiçao_dia WHERE Dia_semana = ?";
+            String sql = "SELECT nome_refeiçao FROM refeiçao_dia WHERE id_usuario=? AND Dia_semana = ?";
             connect= Database.connectDb();
             prepare= connect.prepareStatement(sql);
-            prepare.setString(1,String.valueOf(dia));
+            prepare.setString(1,String.valueOf(user.getId()));
+            prepare.setString(2,String.valueOf(dia));
             result= prepare.executeQuery();
             RefeicaoData refeiçao = null;
             while(result.next()){
@@ -333,6 +246,10 @@ public class DashboardController implements Initializable {
         }
         return nutrientesDia;
     }
+
+    /**
+     * Método que permite ao usuário solicitar um alimento de seu gosto que ainda não esteja no banco de dados do aplicativo
+     */
     public void solicitaAlimento(){
         String sql = "INSERT INTO solicitaçoes"
                 +"(nomeALimento)"
@@ -354,10 +271,44 @@ public class DashboardController implements Initializable {
         }
     }
 
+    /**
+     * Conjunto de métodos para a alternância entre os cards da página inicial
+     */
+    public void getTofeedbackProteinas(){
+        cardProteinas.setVisible(false);
+        cardFeedbackProteinas.setVisible(true);
+    }
+    public void getToCardProteinas(){
+        cardProteinas.setVisible(true);
+        cardFeedbackProteinas.setVisible(false);
+    }
+
+    public void getTofeedbackCarbo(){
+        cardCarboidratos.setVisible(false);
+        cardFeedbackCarbo.setVisible(true);
+    }
+    public void getToCardCarbo(){
+        cardCarboidratos.setVisible(true);
+        cardFeedbackCarbo.setVisible(false);
+    }
+    public void getTofeedbackCalorias(){
+        cardCalorias.setVisible(false);
+        cardFeedbackCalorias.setVisible(true);
+    }
+    public void getToCardCalorias(){
+        cardCalorias.setVisible(true);
+        cardFeedbackCalorias.setVisible(false);
+    }
+
+    /**
+     * Método de inicialização dos dados presentes nos Cards da pagina inicial, obtendo a média dos nutrientes
+     * e gerando os respectivos feedBacks
+     * @return
+     */
     public HashMap<String,Object> initInfosCard(){
         HashMap<String, Object> medias= new HashMap<>();
         try{
-            String sql= "SELECT nome_refeiçao FROM refeiçao_dia";
+            String sql= "SELECT nome_refeiçao FROM refeiçao_dia WHERE id_usuario= '"+ user.getId()+"'";
             ObservableList<RefeicaoData> todasRefeiçoesEmUso= FXCollections.observableArrayList();
             connect= Database.connectDb();
             prepare= connect.prepareStatement(sql);
@@ -398,6 +349,44 @@ public class DashboardController implements Initializable {
             mediaCarbo.setText(String.format("%.1f", mediaCarboidratos));
             mediaProt.setText(String.format("%.1f", mediaProteinas));
             mediaCal.setText(String.format("%.1f", mediaCalorias));
+            String feedbackProteinas="",feedbackCarbo="",feedbackCalorias="";
+            if(mediaCarboidratos<140){
+                indicadorCarboidratos.setStyle("-fx-background-color: #ab0404");
+                feedbackCarbo="! Quantidades de carboidratos abaixo das recomendações mímimas podem causar: impactos cognitivos -como dificuldades de concentração-  e falta de energia para as atividades diárias. Recomenda-se uma maior ingestão de frutas, massas e grãos.";
+                quantidadeRecCarbo.setText("140g");
+                descriçaoFeedbackCarbo.setText(feedbackCarbo);
+            }
+            else{
+                indicadorCarboidratos.setStyle("-fx-background-color: #00a900");
+                quantidadeRecCarbo.setText("140g");
+                feedbackCarbo=" Parabéns, você está consumindo uma quantidade de carboidratos adequada e suficiente para o funcionamento do seu corpo. No entanto, caso pratique atividades físicas com frequência, é recomendada uma ingestão de pelo menos 300g por dia.";
+                descriçaoFeedbackCarbo.setText(feedbackCarbo);
+            }
+            if(mediaCalorias<1500){
+                indicadorCalorias.setStyle("-fx-background-color: #a40606");
+                feedbackCalorias="! A quantidade calórica, quando não ingerida adequadamente pode causar: perda de peso excessiva, fraqueza, fadiga e impactos nega- tivos nos hormônios naturais. Recomenda-se maior ingestão de nozes , sementes , produtos lácteos e massas (seguindo possível dieta).";
+                quantidadeRecCalorias.setText("1400Kcal");
+                descriçaoFeedbackCalorias.setText(feedbackCalorias);
+            }
+            else{
+                indicadorCalorias.setStyle("-fx-background-color: #00a900");
+                feedbackCalorias= " Parabéns, sua ingestão de calorias por dia está adequada para um bom funcionamento corporal. Porém, caso pratique atividades físicas com frequencia, os valores mínimos podem chegar até a 2000Kcal. Se for o seu caso busque alimentos calóricos para sua dieta";
+                quantidadeRecCalorias.setText("1400Kcal");
+                descriçaoFeedbackCalorias.setText(feedbackCalorias);
+            }
+            if(mediaProteinas<(0.9*user.getPeso())){
+                indicadorProteinas.setStyle("-fx-background-color: #a60404");
+                feedbackProteinas= "! Quantidades de proteínas abaixo das reco- mendações mínimas podem acarretar em: perda muscular, Problemas de pele / cabelo e unhas , retardo na cicatrização de feridas e etc. Recomenda-se uma maior ingestão de Carnes, peixes, Ovos e leguminosas.";
+                quantidadeRecProteinas.setText(String.format("%.1f",user.getPeso()*0.9)+"g");
+                descriçaoFeedbackProteinas.setText(feedbackProteinas);
+            }
+            else{
+                indicadorProteinas.setStyle("-fx-background-color: #00a900");
+                feedbackProteinas= "Parabéns, você está consumindo uma quan- tidade de proteínas adequada para o seu corpo. No entanto, caso possua objetivos acerca de crescimento muscular, a quanti- dade indicada para melhores desempenhos é de 1.5*Kg corporal. No seu caso: "+
+                        String.valueOf(user.getPeso()*1.5)+"g";
+                quantidadeRecProteinas.setText(String.format("%.1f",user.getPeso()*0.9)+"g");
+                descriçaoFeedbackProteinas.setText(feedbackProteinas);
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -405,7 +394,7 @@ public class DashboardController implements Initializable {
     }
 
     /**
-     * Meotodo que verifica se o textField que captura os pesos de cada alimento possui apenas dígitos
+     * Método que verifica se o textField que captura os pesos de cada alimento possui apenas dígitos
      * @param textField
      */
     private void contemApenasDigitos(TextField textField) {
@@ -419,19 +408,17 @@ public class DashboardController implements Initializable {
         // Verifica se o texto contém apenas dígitos de 0 a 9
     }
 
+    /**
+     * Método que exibe as refeições cadastradas conforme o usuário digita no textFields
+     * @param textField
+     */
     public void initListaDeSugestoesRefeiçoes(TextField textField){
         ArrayList<String> refeiçoesAutoComp= new ArrayList<>();
         for(RefeicaoData r: listaRefeiçoes) {
-            refeiçoesAutoComp.add(r.getNome());
+            refeiçoesAutoComp.add(r.getNome().toUpperCase());
         }
             TextFields.bindAutoCompletion(textField,refeiçoesAutoComp);
             textField.focusedProperty().addListener((observable,oldValue,newValue)-> {
-                if(!newValue){
-                    String textoAtual = textField.getText();
-                    if(!refeiçoesAutoComp.contains(textoAtual)){
-                        textField.setText("");
-                    }
-                }
             });
 
     }
@@ -464,6 +451,10 @@ public class DashboardController implements Initializable {
             }
         });
     }
+
+    /**
+     * Filtro para a tabela de alimentos, de acordo com o nome escrito pelo usuário no textField
+     */
     public void listaAlimentosFiltrado(){
         FilteredList<AlimentoData> filter= new FilteredList<>(listaAlimentos, e-> true);
         filtraAlimentos.textProperty().addListener((Observable, oldValue, newValue)-> {
@@ -484,6 +475,11 @@ public class DashboardController implements Initializable {
         sortList.comparatorProperty().bind(tabelaAlimentos.comparatorProperty());
         tabelaAlimentos.setItems(sortList);
     }
+
+    /**
+     * Filtro para a tabela de refeições, de acordo com o alimento informado pelo usuário no TextField
+     * Exibe apenas as refeições que contiverem o alimento requerido
+     */
     public void listaRefeiçoesFiltrada(){
         FilteredList<RefeicaoData> filter = new FilteredList<>(listaRefeiçoes, e -> true);
         filtraRefeiçoes.textProperty().addListener((Observable, oldValue, newValue) -> {
@@ -522,7 +518,9 @@ public class DashboardController implements Initializable {
         tableRefeiçoes.setItems(sortList);
     }
 
-
+    /**
+     * Método que realiza o update da refeição no banco de dados, passando os novos dados
+     */
     public void atualizaRefeiçaoListaGeral(){
         verificaPesos();
         String sql = "UPDATE refeiçoes set nome = '"+ nomeNovaRefeiçao.getText()+
@@ -534,7 +532,8 @@ public class DashboardController implements Initializable {
                 ",a6 = '"+ a6add.getText()+"|"+a6peso.getText()+"'"+
                 ",a7 = '"+ a7add.getText()+"|"+a7peso.getText()+"'"+
                 ",a8 = '"+ a8add.getText()+"|"+a8peso.getText()+"' WHERE nome = '"+
-                nomeNovaRefeiçao.getText()+"'";
+                nomeNovaRefeiçao.getText()+"' AND id_usuario = '"+
+                user.getId()+"'";
         connect= Database.connectDb();
         try{
             Alert alert;
@@ -569,6 +568,12 @@ public class DashboardController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * verificação para a existência de refeições com o nome passado como argumento
+     * @param nome
+     * @return
+     */
     public boolean existeRefeiçao(String nome){
         boolean existe = false;
         for(RefeicaoData r: addRefeiçaoList()){
@@ -578,8 +583,13 @@ public class DashboardController implements Initializable {
         }
         return existe;
     }
+
+    /**
+     * Método que remove a refeição especificada do banco de dados de refeições cadastradas
+     */
     public void deletaRefeiçaoListaGeral(){
-        String sql = "DELETE FROM refeiçoes WHERE nome = '"+ nomeNovaRefeiçao.getText()+"'";
+        String sql = "DELETE FROM refeiçoes WHERE nome = '"+ nomeNovaRefeiçao.getText()+"'AND id_usuario = '"
+                        +user.getId()+"'";
         connect= Database.connectDb();
         try{
             Alert alert;
@@ -621,8 +631,12 @@ public class DashboardController implements Initializable {
         }
     }
 
+    /**
+     * Método que exclui a refeição especificada do dias da semana
+     * @param nome
+     */
     public void deletaRefeiçaoDosDias(String nome){
-        String sql = "DELETE FROM refeiçao_dia WHERE nome_refeiçao = '"+nome+"'";
+        String sql = "DELETE FROM refeiçao_dia WHERE nome_refeiçao = '"+nome+"' AND id_usuario = '" +user.getId()+"'";
         connect= Database.connectDb();
         try{
             statement= connect.createStatement();
@@ -677,6 +691,11 @@ public class DashboardController implements Initializable {
         }
     }
 
+    /**
+     * Método que realiza uma consulta Sql para obter todos os alimentos do banco de dados e transforma-los
+     * em entidades do tipo AlimentoData
+     * @return
+     */
     public ObservableList<AlimentoData> addalimentosList(){
         ObservableList<AlimentoData> listaAlimentos= FXCollections.observableArrayList();
         String sql = "SELECT * FROM alimento";
@@ -702,6 +721,9 @@ public class DashboardController implements Initializable {
         return listaAlimentos;
     }
 
+    /**
+     * Método que a partir da lista de alimentos gerada pela consulta sql, faz a inserção de todos na tableView de alimentos
+     */
     public void addAlimentosTable(){
         listaAlimentos = addalimentosList();
         nomeAlimento.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -713,36 +735,48 @@ public class DashboardController implements Initializable {
         tabelaAlimentos.setItems(listaAlimentos);
     }
 
+    /**
+     * Método que adiciona uma refeição a um dia da semana, Relacionando-os através de uma tabela no banco de dados
+     * que possui um Inteiro para o dia da semana e o nome da refeição (M:N)
+     * @param dia
+     */
     private void adicionaBd(int dia){
         String sql ="INSERT INTO refeiçao_dia"
-                + "(Dia_semana,nome_refeiçao)"
-                + "VALUES(?,?)";
+                + "(id_usuario,Dia_semana,nome_refeiçao)"
+                + "VALUES(?,?,?)";
         connect= Database.connectDb();
         Alert alert;
         try{
-            if(nomeRefeiçaoAdc.getText().isEmpty()){
-                alert= new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Refeição inexistente");
-                alert.setHeaderText(null);
-                alert.setContentText("Refeição não encontrada.");
-                alert.showAndWait();
+            for(RefeicaoData r:listaRefeiçoes){
+                if(r.getNome().equalsIgnoreCase(nomeRefeiçaoAdc.getText())){
+                    prepare= connect.prepareStatement(sql);
+                    prepare.setString(1,String.valueOf(user.getId()));
+                    prepare.setString(2,String.valueOf(dia));
+                    prepare.setString(3,nomeRefeiçaoAdc.getText());
+                    prepare.executeUpdate();
+                    return;
+
+                }
             }
-            prepare= connect.prepareStatement(sql);
-            prepare.setString(1,String.valueOf(dia));
-            prepare.setString(2,nomeRefeiçaoAdc.getText());
-            prepare.executeUpdate();
+            alert= new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Refeição inexistente");
+            alert.setHeaderText(null);
+            alert.setContentText("Refeição não encontrada.");
+            alert.showAndWait();
+
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
     public void deleteBd(int dia){
-        String sql= "DELETE FROM refeiçao_dia WHERE Dia_semana = ? AND nome_refeiçao = ?";
+        String sql= "DELETE FROM refeiçao_dia WHERE id_usuario =? AND Dia_semana = ? AND nome_refeiçao = ?";
         connect=Database.connectDb();
         try{
             prepare= connect.prepareStatement(sql);
-            prepare.setString(1, String.valueOf(dia));
-            prepare.setString(2, nomeRefeiçaoAdc.getText());
+            prepare.setString(1,String.valueOf(user.getId()));
+            prepare.setString(2, String.valueOf(dia));
+            prepare.setString(3, nomeRefeiçaoAdc.getText());
             prepare.executeUpdate();
         }catch (Exception e){
             e.printStackTrace();
@@ -839,10 +873,11 @@ public class DashboardController implements Initializable {
     public void configureTableDia(int dia){
         try{
             ObservableList<RefeicaoData> refeiçoesDia= FXCollections.observableArrayList();
-            String sql = "SELECT nome_refeiçao FROM refeiçao_dia WHERE Dia_semana = ?";
+            String sql = "SELECT nome_refeiçao FROM refeiçao_dia WHERE id_usuario=? AND Dia_semana = ?";
             connect= Database.connectDb();
             prepare= connect.prepareStatement(sql);
-            prepare.setString(1,String.valueOf(dia));
+            prepare.setString(1,String.valueOf(user.getId()));
+            prepare.setString(2,String.valueOf(dia));
             result= prepare.executeQuery();
             RefeicaoData refeiçao = null;
             while(result.next()){
@@ -907,7 +942,8 @@ public class DashboardController implements Initializable {
     }
     public ObservableList<RefeicaoData> addRefeiçaoList(){
         ObservableList<RefeicaoData> listaRefeiçoes = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM refeiçoes";
+        String sql = "SELECT * FROM refeiçoes WHERE id_usuario= '"
+                        + user.getId()+"'";
         connect=Database.connectDb();
         try{
             prepare = connect.prepareStatement(sql);
@@ -1205,8 +1241,8 @@ public class DashboardController implements Initializable {
 
     public void addNovaRefeiçaoLista(){
         String sql = "INSERT INTO refeiçoes "
-                + "(nome,a1,a2,a3,a4,a5,a6,a7,a8) "
-                + "VALUES(?,?,?,?,?,?,?,?,?)";
+                + "(id_usuario,nome,a1,a2,a3,a4,a5,a6,a7,a8) "
+                + "VALUES(?,?,?,?,?,?,?,?,?,?)";
         connect= Database.connectDb();
         try{
             Alert alert;
@@ -1220,7 +1256,8 @@ public class DashboardController implements Initializable {
             else{
                 // confere se o nome da nova refeição já existe no Banco de dados.
                 String confere = "SELECT nome FROM refeiçoes WHERE nome = '"
-                        + nomeNovaRefeiçao.getText() + "'";
+                        + nomeNovaRefeiçao.getText() + "' AND id_usuario = '"
+                        + user.getId()+"'";
 
                 statement = connect.createStatement();
                 result = statement.executeQuery(confere);
@@ -1235,15 +1272,16 @@ public class DashboardController implements Initializable {
                     System.out.println(a1peso.getText());
                     verificaPesos();
                     prepare= connect.prepareStatement(sql);
-                    prepare.setString(1,nomeNovaRefeiçao.getText());
-                    prepare.setString(2, a1add.getText()+"|"+a1peso.getText());
-                    prepare.setString(3, a2add.getText()+"|"+a2peso.getText());
-                    prepare.setString(4, a3add.getText()+"|"+a3peso.getText());
-                    prepare.setString(5, a4add.getText()+"|"+a4peso.getText());
-                    prepare.setString(6, a5add.getText()+"|"+a5peso.getText());
-                    prepare.setString(7, a6add.getText()+"|"+a6peso.getText());
-                    prepare.setString(8, a7add.getText()+"|"+a7peso.getText());
-                    prepare.setString(9, a8add.getText()+"|"+a8peso.getText());
+                    prepare.setString(1,String.valueOf(user.getId()));
+                    prepare.setString(2,nomeNovaRefeiçao.getText());
+                    prepare.setString(3, a1add.getText()+"|"+a1peso.getText());
+                    prepare.setString(4, a2add.getText()+"|"+a2peso.getText());
+                    prepare.setString(5, a3add.getText()+"|"+a3peso.getText());
+                    prepare.setString(6, a4add.getText()+"|"+a4peso.getText());
+                    prepare.setString(7, a5add.getText()+"|"+a5peso.getText());
+                    prepare.setString(8, a6add.getText()+"|"+a6peso.getText());
+                    prepare.setString(9, a7add.getText()+"|"+a7peso.getText());
+                    prepare.setString(10, a8add.getText()+"|"+a8peso.getText());
                     prepare.executeUpdate();
                     alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Confirmação");
@@ -1300,6 +1338,9 @@ public class DashboardController implements Initializable {
         a8peso.setText("");
     }
 
+    /**
+     * Método que remove a seleção dos checkBox
+     */
     public void resetCheckBoxAndTextFieldHome(){
         checkSegunda.setSelected(false);
         checkTerça.setSelected(false);
@@ -1311,6 +1352,10 @@ public class DashboardController implements Initializable {
         nomeRefeiçaoAdc.setText("");
     }
 
+    /**
+     * Método para a inserção dos dados da refeição, passada como argumento, no gráfico.
+     * @param selectedRow
+     */
     private void updateChartData(RefeicaoData selectedRow) {
         // Crie uma nova lista de dados para o gráfico com base na linha selecionada
         ObservableList<PieChart.Data> newData = FXCollections.observableArrayList(
@@ -1352,7 +1397,10 @@ public class DashboardController implements Initializable {
         }
     }
 
-
+    /**
+     * Método responsável pela troca de páginas, a partir do botão lateral selecionado pelo usuário
+     * @param event -- click do usuário
+     */
     public void opçaoMenu(ActionEvent event){
         if(event.getSource()== homeButton){
             homePage.setVisible(true);
@@ -1363,6 +1411,7 @@ public class DashboardController implements Initializable {
             catalogoAlimentosButton.setStyle("-fx-background-color: transparent");
             segundaButton.requestFocus(); // Define o foco no botão "segundaButton"
             segundaButton.fire();
+            addRefeiçoesTable();
             initListaDeSugestoesRefeiçoes(nomeRefeiçaoAdc);
             setUser();
             defineNomeUser();

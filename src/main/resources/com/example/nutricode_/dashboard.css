@@ -87,6 +87,56 @@
     -fx-scale-y: 0.8;
 }
 
+.button-feedback{
+    -fx-background-color: blue;
+    -fx-min-width: 10px;
+    -fx-max-width: 10px;
+    -fx-min-height: 10px;
+    -fx-max-height: 10px;
+    -fx-background-radius: 60px;
+}
+.button-feedback .FontAwesomeIconView{
+    -fx-fill:  blue;
+}
+.button-feedback:hover{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+
+.button-feedback:pressed{
+    -fx-background-color: transparent;
+}
+
+.card-feedback{
+    -fx-border-color: #e72525;
+    -fx-background-color: #f3f3f3;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+}
+
+.card-feedback .label{
+    -fx-font-family: Tahoma;
+    -fx-font-size: 15px;
+}
+
+.card-feedback .textoDesc{
+    -fx-font-family: Tahoma;
+    -fx-font-size: 13px;
+}
+
+.button-back-feedback{
+    -fx-background-color: transparent;
+    -fx-min-width: 22px;
+    -fx-max-width: 22px;
+    -fx-min-height: 22px;
+    -fx-max-height: 22px;
+    -fx-cursor: hand;
+}
+
+.button-back-feedback:hover{
+    -fx-background-color: transparent;
+}
+
 
 
 

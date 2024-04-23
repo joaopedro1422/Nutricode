@@ -14,6 +14,17 @@
     -fx-background-color: white;
 }
 
+.registro-button{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
+
+.registro-button:hover{
+    -fx-font-size: 13.5px;
+}
+
+
 .login-button{
     -fx-background-color: linear-gradient(to bottom right,#461212,#ff0000);
     -fx-cursor: hand;
@@ -106,8 +117,10 @@
 .card{
     -fx-background-color: linear-gradient(to bottom right, #d52e00, #f34501) ;
     -fx-background-radius: 4px;
-    -fx-cursor: hand;
-
+}
+.card .numeros{
+    -fx-font-family: Arial;
+    -fx-font-size: 28px;
 }
 
 .card :hover{
