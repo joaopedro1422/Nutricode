@@ -839,7 +839,12 @@ public class DashboardController implements Initializable {
         resetCheckBoxAndTextFieldHome();
 
     }
-
+    
+    /**
+     * Método que define os dados do dashboard de acordo com o button do dia da semana selecionado pelo usuário.
+     * Chama o método que realiza os cálculos e inserções passando um inteiro correspondente ao dia da semana
+     * 1 = segunda-feira ; 2 = Terça-feira; 3= quarta-feira ... 7 = domingo
+     */
     public void setTableDiaSemana(ActionEvent event){
         if(event.getSource()==segundaButton){
             segundaButton.setStyle("-fx-background-color: #500505");
@@ -870,6 +875,10 @@ public class DashboardController implements Initializable {
             configureTableDia(7);
         }
     }
+    /**
+     * Método complementar ao método acima. Recebe o dia como parâmetro e realiza a consulta Sql para  obter as informações
+     * do banco de dados
+     */
     public void configureTableDia(int dia){
         try{
             ObservableList<RefeicaoData> refeiçoesDia= FXCollections.observableArrayList();
@@ -896,7 +905,9 @@ public class DashboardController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Método responsável por receber a lista de refeições presentes no dia selecionado e inseri-los na TableView
+     */
     public void addRefeiçoesTableDia(ObservableList<RefeicaoData> refeiçoesDoDia){
         listaRefeiçoesDia = refeiçoesDoDia;
         nomeRefeiçaoDia.setCellValueFactory(new PropertyValueFactory<>("nome"));
@@ -912,7 +923,9 @@ public class DashboardController implements Initializable {
         tabelaRefeiçoesDia.setItems(listaRefeiçoesDia);
 
     }
-
+    /**
+     * Método responsável por inicializar a tabela de dados nutricionais do dia selecionado pelo usuário
+     */
     public void initNutrientesDia(ObservableList<RefeicaoData> lista){
         if(!lista.isEmpty()) {
             for (RefeicaoData r : lista) {
@@ -940,6 +953,9 @@ public class DashboardController implements Initializable {
         gordurasDiaF =0;
         fibrasDiaF =0;
     }
+    /**
+     * Método que realiza uma consulta Sql para recuperar todas as refeições criadas pelo usuário e transforma-las em entidades RefeiçãoData
+     */
     public ObservableList<RefeicaoData> addRefeiçaoList(){
         ObservableList<RefeicaoData> listaRefeiçoes = FXCollections.observableArrayList();
         String sql = "SELECT * FROM refeiçoes WHERE id_usuario= '"
