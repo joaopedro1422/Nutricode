@@ -1,5 +1,6 @@
 # Nutricode
   Vídeo de demonstração: https://youtu.be/O1FWJCFl-rg
+  
   Aplicativo desktop Full stack, construído a partir das linguagen:s Java (JavaFx para interface gráfica interativa), Sql, python e css. Se trata de um sistema de gerenciamento de nutrição individual, o qual permite 
 consultas à tabela nutricional de diversos alimentos(Com dados sólidos a partir da Api da USDA), criaçao e manuseio de refeições utilizando os alimentos do banco de dados e gerenciamento
 da rotina nutricional do usuário. Além disso, fornece os dados totais (carboidratos,Proteínas,Calorias...) de cada refeição, de cada dia e a média diária de ingestão dos nutrientes 
