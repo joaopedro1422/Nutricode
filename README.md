@@ -19,6 +19,6 @@ Nele é possível:
 * Obter a média semanal de consumo dos principais nutrientes por dia, gerando um feedback sobre a atual situação alimentar do usuário
 * Gerar um relarório em PDF com todos os dados da rotina do usuário, funcionalidade bastante útil para avaliações físicas em academias, consultas médicas e até consultas com nutricionistas,
 *  já que permite uma ótima noção do atual estado alimentar do usuário.
- Uma das principais motivações para a construção do projeto foi a ideia de proporcionar ao usuário uma noção concreta de sua rotina de alimentação, com dados e poder de gerenciamento individual, 
- funcionalidades essas que raramente são acatadas em conjunto nos aplicativos/sites e que permitem uma gama de formas de utilização.
+
+ Uma das principais motivações para a construção do projeto foi a ideia de proporcionar ao usuário uma noção concreta de sua rotina de alimentação, com dados e poder de gerenciamento individual, funcionalidades essas que raramente são acatadas em conjunto nos aplicativos/sites e que permitem uma gama de formas de utilização.
 Para fins de exemplo, o usuário pode iniciar replicando suas alimentaçoes díarias e atribuindo na agenda semanal da forma com que pratica na vida real, obtendo assim os principais dados nutricionais de sua rotina atual e ir adaptando gradativamente (os alimentos e refeiçoes) de acordo com o seu objetivo de dieta.
